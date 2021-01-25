@@ -4,7 +4,8 @@
 Exercise 1- Find The Virus
 Shirin Zafarmand
 
-Here is a description of this template p5 project.
+the game in which you have to find the virus lost among bacterias before the time is over. each time you click on the wrong virus, you
+lose time. when the fade from the screen, their locations change randomly, so it's best to find it sooner and disinfect it.
 **************************************************/
 
 const NUM_BACTERIA_IMAGES=8;
@@ -67,7 +68,7 @@ function setup() {
   //reloacting the virus everytime it disapears from the screen
   let relocate= random(0,50);
   //constructing the virus
-  virus= new Virus(x,y,virusImage)
+  virus= new Virus(x,y,virusImage);
 
   //constructiong the timer
   timer= new Timer();
@@ -88,62 +89,62 @@ function draw() {
 
     fill(100,50,67);
     rectMode(CENTER);
-    text('Choose the level of difficulty. On keyboard 1-2-3.',width/2,height/2+300)
+    text('Choose the level of difficulty. On keyboard 1-2-3.',width/2,height/2+300);
     //level of difficulty
-    ellipse(width/2-200,height/2+400,130)
-    ellipse(width/2+200,height/2+400,130)
-    ellipse(width/2,height/2+400,130)
+    ellipse(width/2-200,height/2+400,130);
+    ellipse(width/2+200,height/2+400,130);
+    ellipse(width/2,height/2+400,130);
 
     push();
-    fill(255)
-    text('Easy',width/2-200,height/2+400)
-    text('Medium',width/2,height/2+400)
-    text('Hard',width/2+200,height/2+400)
+    fill(255);
+    text('Easy',width/2-200,height/2+400);
+    text('Medium',width/2,height/2+400);
+    text('Hard',width/2+200,height/2+400);
     pop();
 
-    }
-
-    else if(state==='start'){
-      background(bg.r,bg.g,bg.b);
-
-      //displaying bacterias
-      for(let i = 0; i<bacterias.length; i++){
-        bacterias[i].update();
-      }
-
-      //displaying th virus
-      virus.update();
-
-      //displaying timer and showing the time that is left
-      timer.display();
-      timer.shrink();
-      //when time is over they lose
-      timer.timeOver();
-
-      //show the losing titration
-      lost();
-      won();
-    }
   }
 
-  function mousePressed(){
-    //check if the virus is found
-    virus.mousePressed();
-  }
+  else if(state==='start'){
+    background(bg.r,bg.g,bg.b);
 
-  function keyPressed(){
-    if(keyCode===49 &&
+    //displaying bacterias
+    for(let i = 0; i<bacterias.length; i++){
+      bacterias[i].update();
+    }
+
+    //displaying th virus
+    virus.update();
+
+    //displaying timer and showing the time that is left
+    timer.display();
+    timer.shrink();
+    //when time is over they lose
+    timer.timeOver();
+
+    //show the losing titration
+    lost();
+    won();
+  }
+}
+
+function mousePressed(){
+  //check if the virus is found
+  virus.mousePressed();
+}
+
+function keyPressed(){
+  if(keyCode===49 &&
+    state==='title'){
+      state='start';
+      //if chosen the easy level the timer runs slower
+      timer.diminish=-0.1
+    }
+
+    else if(keyCode===50 &&
       state==='title'){
         state='start';
-        //if chosen the easy level the timer runs slower
-        timer.diminish=-0.1
+        timer.diminish=-1
       }
-
-      else if(keyCode===50 &&
-        state==='title'){
-          state='start';
-          timer.diminish=-1
-        }
 
       else if(keyCode===51 &&
         state==='title'){
@@ -155,19 +156,19 @@ function draw() {
 
       function lost(){
         if (state === 'lose'){
-          background(150,0,0)
+          background(150,0,0);
           fill(255);
           //show the losing titration
-          text('fuck' ,width/2,height/2)
+          text('fuck' ,width/2,height/2);
         };
       };
 
 
       function won(){
         if (state === 'win'){
-          background(0,150,0)
+          background(0,150,0);
           fill(255);
           //show the winning titration
-          text('yay' ,width/2,height/2)
+          text('yay' ,width/2,height/2);
         };
       }

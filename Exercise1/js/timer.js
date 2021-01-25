@@ -9,7 +9,7 @@ class Timer{
     this.diminish=-1;
   };
 
-  //displaying thr timer that covers the whole screen
+  //displaying thr timer
   display(){
     push();
     rectMode(CORNER);
