@@ -37,6 +37,6 @@ class Virus extends Bacteria{
       demo(){
         //show an example of how the virus looks like
         imageMode(CENTER);
-        image(this.image,windowWidth/2,windowHeight/2+150,300,250);
+        image(this.image,windowWidth/2,windowHeight/2+200,300,250);
       }
     }

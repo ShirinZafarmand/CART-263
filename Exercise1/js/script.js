@@ -82,7 +82,7 @@ function draw() {
     fill(255);
     //instruction
     text('There is a stubborn virus among the bacterias. It has to be cuaght before it becomes toxic. The time considered to complete this mission is on the left. ',width/2,height/2);
-    text('Everytime you click on the wrong one you lose a certain amout of time. Try to find it before they fade cause each time their location changes.',width/2,height/2+100);
+    text('Everytime you click on the wrong one you lose a certain amout of time. Try to find it before they fade cause each time their location changes.',width/2,height/2+50);
     //picture of what the virus looks like
     virus.demo();
     pop();
@@ -137,20 +137,20 @@ function keyPressed(){
     state==='title'){
       state='start';
       //if chosen the easy level the timer runs slower
-      timer.diminish=-0.1
+      timer.diminish=-2
     }
 
     else if(keyCode===50 &&
       state==='title'){
         state='start';
-        timer.diminish=-1
+        timer.diminish=-3.5
       }
 
       else if(keyCode===51 &&
         state==='title'){
           state='start';
           //if chosen the easy level the timer runs fatser
-          timer.diminish=-7
+          timer.diminish=-5
         }
       }
 
