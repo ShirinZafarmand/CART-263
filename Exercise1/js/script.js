@@ -159,7 +159,7 @@ function keyPressed(){
           background(150,0,0);
           fill(255);
           //show the losing titration
-          text('fuck' ,width/2,height/2);
+          text('It is too late to disinfect. Time is over.' ,width/2,height/2);
         };
       };
 
@@ -169,6 +169,6 @@ function keyPressed(){
           background(0,150,0);
           fill(255);
           //show the winning titration
-          text('yay' ,width/2,height/2);
+          text('Made it in time' ,width/2,height/2);
         };
       }
