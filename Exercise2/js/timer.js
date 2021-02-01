@@ -6,7 +6,7 @@ class Timer{
     this.y=0;
     this.width=windowWidth;
     this.height=windowHeight;
-    this.diminish=-5;
+    this.diminish=-0.4;
   };
 
   //displaying thr timer
@@ -21,6 +21,8 @@ class Timer{
   //the speed of the timer
   shrink(){
     this.height=this.height+this.diminish;
+    pitch=pitch+pitchIncrease;
+    rate=rate+rateIncrease;
   };
 
   //when time is over then change the state

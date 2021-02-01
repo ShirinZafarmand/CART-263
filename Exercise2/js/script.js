@@ -13,11 +13,15 @@ const animals=[
 
 let currentAnimal =``;
 let currentAnswer =``;
-let finalAnimal;
 let correctAnswer;
-let score=0
+let score=0;
 let timer;
 let state ='title';
+let pitch=2;
+let rate=1.5;
+let pitchIncrease=0.001
+let rateIncrease=0.001/2
+
 
 function preload(){
   //load the correct answer sound effect
@@ -58,11 +62,6 @@ function draw() {
     fill(255);
     //displaying th escore
     text(score,width/2,height/3);
-
-    if (keyIsDown(32)){
-      //as long as the space key is down the animal word is broken into letters
-      breakString();
-    };
 
     //check if the answer matched the word
     if(currentAnimal===currentAnswer){
@@ -109,18 +108,12 @@ function keyPressed(){
     //choose a random animal name from the array
     currentAnimal= random(animals);
     //displaying the voice that says the animal name
-    responsiveVoice.speak(currentAnimal);
+    responsiveVoice.speak(currentAnimal,"UK English Male",{
+      pitch:pitch,
+      rate:rate,
+    });
   }
 
-
-  /**
-  breaking the letters of the animal word
-  */
-  function breakString(string) {
-    // Split the string into an array of characters
-    finalAnimal = string.split('');
-    return finalAnimal;
-  }
 
 
   function lost(){
