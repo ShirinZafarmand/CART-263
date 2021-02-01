@@ -1,27 +1,44 @@
 "use strict";
 
 /**
-Spelling Game
+quess the word
 Shirin Zafarmand
 
 */
 
 const animals=[
-  "mouse",
+
   "alligator",
 ];
 
+const languages=[
+  "UK English Male",
+  "French Male",
+  "German Male",
+  "Dutch Male",
+  "Swedish Male",
+  "Chinese Female",
+  "Russian Female",
+  "Turkish Male",
+  "Arabic Male",
+  "Latin Female",
+  "Welsh Male",
+  "Hindi Female"
+]
+
 let currentAnimal =``;
 let currentAnswer =``;
+let voice="";
 let correctAnswer;
+let wrongAnswer;
+let scoreIncrease=false;
 let score=0;
 let timer;
 let state ='title';
 let pitch=2;
 let rate=1.5;
-let pitchIncrease=0.001
-let rateIncrease=0.001/2
-
+let pitchIncrease=0
+let rateIncrease=0
 
 function preload(){
   //load the correct answer sound effect
@@ -54,7 +71,7 @@ function draw() {
     background(125)
     fill(255);
     //the instruction of the game
-    text('This is a spelling contest. You hear a word and have to spell its letters correctly. You have to gain 30 scores in the given time in order to win. ready? press the enter key',width/2,height/2);
+    text('. You have to gain 30 scores in the given time in order to win. ready? press the enter key',width/2,height/2);
   }
 
   else if(state==='start'){
@@ -66,11 +83,15 @@ function draw() {
     //check if the answer matched the word
     if(currentAnimal===currentAnswer){
       fill(0,255,0);
+      scoreIncrease=true;
       //if the answer is right increase the score by one
-      score++
-      //play the correct answer sound effect
-      correctAnswer.play();
+      if (scoreIncrease===true){
+        score++
+        //play the correct answer sound effect
+        correctAnswer.play();
+      }
     }
+
     else{
       //if the answer id wrong the text color is red
       fill(255,0,0);
@@ -107,8 +128,9 @@ function keyPressed(){
   function mousePressed(){
     //choose a random animal name from the array
     currentAnimal= random(animals);
+    voice=random(languages);
     //displaying the voice that says the animal name
-    responsiveVoice.speak(currentAnimal,"UK English Male",{
+    responsiveVoice.speak(currentAnimal,voice,{
       pitch:pitch,
       rate:rate,
     });
