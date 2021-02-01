@@ -15,7 +15,7 @@ let currentAnimal =``;
 let currentAnswer =``;
 let finalAnimal;
 let correctAnswer;
-
+let score=0
 function preload(){
   correctAnswer= loadSound(`assets/sounds/correct.mp3`);
 }
@@ -29,22 +29,24 @@ function setup() {
     };
     annyang.addCommands(commands);
     annyang.start();
-
     textSize(32);
     textAlign(CENTER,CENTER);
+
   }
 }
 
 
 function draw() {
 background(0)
+text(score,width/2,height/3);
 
 if (keyIsDown(32)){
   breakString();
 };
 
-if(finalAnimal===currentAnswer){
+if(currentAnimal===currentAnswer){
   fill(0,255,0);
+  score++
   correctAnswer.play();
 }
 
