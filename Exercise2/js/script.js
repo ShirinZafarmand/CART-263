@@ -9,14 +9,16 @@ author, and this description to match your project!
 */
 
 const animals=[
-     "a-a-r-d-v-a-r-k",
-     "a-l-l-i-g-a-t-o-r",
+     "mouse",
+     "alligator",
    ];
 
 let currentAnimal =``;
 let currentAnswer =``;
+let finalAnimal;
 
 function setup() {
+  createCanvas(windowWidth,windowHeight)
   if (annyang){
     let commands = {
       'I think it is *animal': guessAnimal
@@ -31,7 +33,20 @@ function setup() {
 
 
 function draw() {
+background(0)
 
+if (keyIsDown(32)){
+  breakString();
+};
+
+if(finalAnimal===currentAnswer){
+  fill(0,255,0)
+}
+
+else{
+  fill(255,0,0)
+}
+text(currentAnswer,width/2,height/2)
 }
 
 function guessAnimal(animal){
@@ -41,19 +56,15 @@ function guessAnimal(animal){
 
 function mousePressed(){
   currentAnimal= random(animals);
-  let brokenString= breakString(currentAnimal);
-  responsiveVoice.speak(brokenString);
+  responsiveVoice.speak(currentAnimal);
 }
 
 
 /**
 Reverses the provided string
 */
-function breakString(string) {
+function breakString(currentAnimal) {
   // Split the string into an array of characters
-  let characters = string.split("-");
-
-  let result = characters.join('-');
-  // Return the result
-  return result;
+  let finalAnimal = currentAnimal.split('');
+return finalAnimal;
 }
