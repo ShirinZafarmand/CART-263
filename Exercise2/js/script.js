@@ -20,7 +20,10 @@ let timer;
 let state ='title';
 
 function preload(){
+  //load the correct answer sound effect
   correctAnswer= loadSound(`assets/sounds/correct.mp3`);
+  //load the wrong answer sound effect
+  wrongAnswer= loadSound(`assets/sounds/wrong.mp3`);
 }
 
 
@@ -28,8 +31,10 @@ function setup() {
   createCanvas(windowWidth,windowHeight)
   if (annyang){
     let commands = {
+      //save the name of the animal as an answer
       'I think it is *animal': guessAnimal
     };
+    //add the asnwer to annyang command storage
     annyang.addCommands(commands);
     annyang.start();
     textSize(32);
@@ -44,27 +49,35 @@ function draw() {
   if(state==='title'){
     background(125)
     fill(255);
-    text('There is a stubborn virus among the bacterias. It has to be cuaght before it becomes toxic. The time considered to complete this mission is on the left. ',width/2,height/2);
+    //the instruction of the game
+    text('This is a spelling contest. You hear a word and have to spell its letters correctly. You have to gain 30 scores in the given time in order to win. ready? press the enter key',width/2,height/2);
   }
 
   else if(state==='start'){
     background(0)
     fill(255);
+    //displaying th escore
     text(score,width/2,height/3);
 
     if (keyIsDown(32)){
+      //as long as the space key is down the animal word is broken into letters
       breakString();
     };
 
+    //check if the answer matched the word
     if(currentAnimal===currentAnswer){
       fill(0,255,0);
+      //if the answer is right increase the score by one
       score++
+      //play the correct answer sound effect
       correctAnswer.play();
     }
     else{
+      //if the answer id wrong the text color is red
       fill(255,0,0);
     };
 
+    //display the given answer
     text(currentAnswer,width/2,height/2);
 
     //displaying timer and showing the time that is left
@@ -79,7 +92,7 @@ function draw() {
 
 }
 
-
+//transition from instructions to the game
 function keyPressed(){
   if(keyCode===13 &&
     state==='title'){
@@ -93,7 +106,9 @@ function keyPressed(){
   }
 
   function mousePressed(){
+    //choose a random animal name from the array
     currentAnimal= random(animals);
+    //displaying the voice that says the animal name
     responsiveVoice.speak(currentAnimal);
   }
 
@@ -113,7 +128,7 @@ function keyPressed(){
       background(150,0,0);
       fill(255);
       //show the losing titration
-      text('It is too late to disinfect. Time is over.' ,width/2,height/2);
+      text('You failed to spell these words correctly and in time' ,width/2,height/2);
     };
   };
 
