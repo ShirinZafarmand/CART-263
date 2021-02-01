@@ -41,26 +41,26 @@ function setup() {
 
 
 function draw() {
-
   if(state==='title'){
     background(125)
     fill(255);
     text('There is a stubborn virus among the bacterias. It has to be cuaght before it becomes toxic. The time considered to complete this mission is on the left. ',width/2,height/2);
   }
+
   else if(state==='start'){
     background(0)
     fill(255);
     text(score,width/2,height/3);
-    
+
     if (keyIsDown(32)){
       breakString();
     };
 
     if(currentAnimal===currentAnswer){
       fill(0,255,0);
-
+      score++
+      correctAnswer.play();
     }
-
     else{
       fill(255,0,0);
     };

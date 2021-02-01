@@ -6,7 +6,7 @@ class Timer{
     this.y=0;
     this.width=windowWidth;
     this.height=windowHeight;
-    this.diminish=-0.25;
+    this.diminish=-5;
   };
 
   //displaying thr timer
@@ -25,8 +25,13 @@ class Timer{
 
   //when time is over then change the state
   timeOver(){
-    if(this.height<=0){
+    if(this.height<=0 &&
+    score<300){
         state='lose';
-      };
+      }
+      else if(this.height<=0 &&
+      score>300){
+        state='win'
+      }
     };
   }
