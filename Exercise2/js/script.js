@@ -1,11 +1,9 @@
 "use strict";
 
 /**
-Title of Project
-Author Name
+Spelling Game
+Shirin Zafarmand
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
 */
 
 const animals=[
@@ -16,6 +14,12 @@ const animals=[
 let currentAnimal =``;
 let currentAnswer =``;
 let finalAnimal;
+let correctAnswer;
+
+function preload(){
+  correctAnswer= loadSound(`assets/sounds/correct.mp3`);
+}
+
 
 function setup() {
   createCanvas(windowWidth,windowHeight)
@@ -40,18 +44,20 @@ if (keyIsDown(32)){
 };
 
 if(finalAnimal===currentAnswer){
-  fill(0,255,0)
+  fill(0,255,0);
+  correctAnswer.play();
 }
 
 else{
-  fill(255,0,0)
-}
-text(currentAnswer,width/2,height/2)
+  fill(255,0,0);
+};
+
+text(currentAnswer,width/2,height/2);
 }
 
 function guessAnimal(animal){
   currentAnswer=animal;
-  console.log(currentAnswer)
+  console.log(currentAnswer);
 }
 
 function mousePressed(){
@@ -61,10 +67,10 @@ function mousePressed(){
 
 
 /**
-Reverses the provided string
+breaking the letters of the animal word
 */
-function breakString(currentAnimal) {
+function breakString(string) {
   // Split the string into an array of characters
-  let finalAnimal = currentAnimal.split('');
-return finalAnimal;
+  finalAnimal = string.split('');
+  return finalAnimal;
 }
