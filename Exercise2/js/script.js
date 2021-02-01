@@ -46,8 +46,6 @@ if (keyIsDown(32)){
 
 if(currentAnimal===currentAnswer){
   fill(0,255,0);
-  score++
-  correctAnswer.play();
 }
 
 else{
