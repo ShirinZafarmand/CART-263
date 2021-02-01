@@ -14,10 +14,19 @@ const animals=[
    ];
 
 let currentAnimal =``;
-
+let currentAnswer =``;
 
 function setup() {
+  if (annyang){
+    let commands = {
+      'I think it is *animal': guessAnimal
+    };
+    annyang.addCommands(commands);
+    annyang.start();
 
+    textSize(32);
+    textAlign(CENTER,CENTER);
+  }
 }
 
 
@@ -25,6 +34,10 @@ function draw() {
 
 }
 
+function guessAnimal(animal){
+  currentAnswer=animal;
+  console.log(currentAnswer)
+}
 
 function mousePressed(){
   currentAnimal= random(animals);
