@@ -38,7 +38,7 @@ let state ='title';
 let pitch=2;
 let rate=1.5;
 let pitchIncrease=0.001
-let rateIncrease=0.0001/2
+let rateIncrease=0.0001/2;
 
 function preload(){
   //load the correct answer sound effect
@@ -81,15 +81,12 @@ function draw() {
     text(score,width/2,height/3);
 
     //check if the answer matched the word
-    if(currentAnimal===currentAnswer){
+    if(currentAnimal===currentAnswer && scoreIncrease===true){
       fill(0,255,0);
-      scoreIncrease=true;
       //if the answer is right increase the score by one
-      if (scoreIncrease===true){
         score++
         //play the correct answer sound effect
         correctAnswer.play();
-      }
     }
 
     else{
@@ -123,6 +120,7 @@ function keyPressed(){
   function guessAnimal(animal){
     currentAnswer=animal;
     console.log(currentAnswer);
+    scoreIncrease=true;
   }
 
   function mousePressed(){
