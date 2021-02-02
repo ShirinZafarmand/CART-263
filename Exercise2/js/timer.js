@@ -28,11 +28,11 @@ class Timer{
   //when time is over then change the state
   timeOver(){
     if(this.height<=0 &&
-    score<300){
+    score<10){
         state='lose';
       }
       else if(this.height<=0 &&
-      score>300){
+      score>10){
         state='win'
       }
     };
