@@ -37,8 +37,8 @@ let timer;
 let state ='title';
 let pitch=2;
 let rate=1.5;
-let pitchIncrease=0
-let rateIncrease=0
+let pitchIncrease=0.001
+let rateIncrease=0.0001/2
 
 function preload(){
   //load the correct answer sound effect
@@ -71,7 +71,7 @@ function draw() {
     background(125)
     fill(255);
     //the instruction of the game
-    text('. You have to gain 30 scores in the given time in order to win. ready? press the enter key',width/2,height/2);
+    text('There are different animals that are pronounced with multi-cutural accents but as the time goes the pitch and rate goes higher. You have to gain 30 scores in the given time in order to win. ready? press the enter key',width/2,height/2);
   }
 
   else if(state==='start'){
@@ -128,6 +128,7 @@ function keyPressed(){
   function mousePressed(){
     //choose a random animal name from the array
     currentAnimal= random(animals);
+    //choose a random pronunciation from the array
     voice=random(languages);
     //displaying the voice that says the animal name
     responsiveVoice.speak(currentAnimal,voice,{
