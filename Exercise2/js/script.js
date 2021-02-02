@@ -1,14 +1,147 @@
 "use strict";
 
 /**
-quess the word
+Guess the word
 Shirin Zafarmand
-
+The user hears a animal word which is pronounced in different accent. the rate and the volume get higher az the time goes by
+so distinguishing the word gets harder. They should raise the score to 30 in order to win.
 */
 
 const animals=[
-
-  "alligator",
+  "aardvark",
+        "alligator",
+        "alpaca",
+        "antelope",
+        "ape",
+        "armadillo",
+        "baboon",
+        "badger",
+        "bat",
+        "bear",
+        "beaver",
+        "bison",
+        "boar",
+        "buffalo",
+        "bull",
+        "camel",
+        "canary",
+        "capybara",
+        "cat",
+        "chameleon",
+        "cheetah",
+        "chimpanzee",
+        "chinchilla",
+        "chipmunk",
+        "cougar",
+        "cow",
+        "coyote",
+        "crocodile",
+        "crow",
+        "deer",
+        "dingo",
+        "dog",
+        "donkey",
+        "dromedary",
+        "elephant",
+        "elk",
+        "ewe",
+        "ferret",
+        "finch",
+        "fish",
+        "fox",
+        "frog",
+        "gazelle",
+        "gila monster",
+        "giraffe",
+        "gnu",
+        "goat",
+        "gopher",
+        "gorilla",
+        "grizzly bear",
+        "ground hog",
+        "guinea pig",
+        "hamster",
+        "hedgehog",
+        "hippopotamus",
+        "hog",
+        "horse",
+        "hyena",
+        "ibex",
+        "iguana",
+        "impala",
+        "jackal",
+        "jaguar",
+        "kangaroo",
+        "koala",
+        "lamb",
+        "lemur",
+        "leopard",
+        "lion",
+        "lizard",
+        "llama",
+        "lynx",
+        "mandrill",
+        "marmoset",
+        "mink",
+        "mole",
+        "mongoose",
+        "monkey",
+        "moose",
+        "mountain goat",
+        "mouse",
+        "mule",
+        "muskrat",
+        "mustang",
+        "mynah bird",
+        "newt",
+        "ocelot",
+        "opossum",
+        "orangutan",
+        "oryx",
+        "otter",
+        "ox",
+        "panda",
+        "panther",
+        "parakeet",
+        "parrot",
+        "pig",
+        "platypus",
+        "polar bear",
+        "porcupine",
+        "porpoise",
+        "prairie dog",
+        "puma",
+        "rabbit",
+        "raccoon",
+        "ram",
+        "rat",
+        "reindeer",
+        "reptile",
+        "rhinoceros",
+        "salamander",
+        "seal",
+        "sheep",
+        "shrew",
+        "silver fox",
+        "skunk",
+        "sloth",
+        "snake",
+        "squirrel",
+        "tapir",
+        "tiger",
+        "toad",
+        "turtle",
+        "walrus",
+        "warthog",
+        "weasel",
+        "whale",
+        "wildcat",
+        "wolf",
+        "wolverine",
+        "wombat",
+        "woodchuck",
+        "yak",
+        "zebra"
 ];
 
 const languages=[
@@ -35,7 +168,7 @@ let scoreIncrease=false;
 let score=0;
 let timer;
 let state ='title';
-let pitch=2;
+let pitch=2.5;
 let rate=1.5;
 let pitchIncrease=0.001
 let rateIncrease=0.0001/2;
@@ -71,22 +204,20 @@ function draw() {
     background(125)
     fill(255);
     //the instruction of the game
-    text('There are different animals that are pronounced with multi-cutural accents but as the time goes the pitch and rate goes higher. You have to gain 30 scores in the given time in order to win. ready? press the enter key',width/2,height/2);
+    text('There are different animals that are pronounced with multi-cutural accents but as the time goes the pitch and rate goes higher.',width/2,height/2);
+    text('You have to gain 30 scores in the given time in order to win. ready? press the enter key',width/2,height/2+50);
+
   }
 
   else if(state==='start'){
     background(0)
     fill(255);
     //displaying th escore
-    text(score,width/2,height/3);
+    text('Your Score: ' + score,width/2,height/3);
 
     //check if the answer matched the word
     if(currentAnimal===currentAnswer && scoreIncrease===true){
       fill(0,255,0);
-      //if the answer is right increase the score by one
-        score++
-        //play the correct answer sound effect
-        correctAnswer.play();
     }
 
     else{
@@ -121,6 +252,12 @@ function keyPressed(){
     currentAnswer=animal;
     console.log(currentAnswer);
     scoreIncrease=true;
+    if(currentAnimal===currentAnswer){
+      //if the answer is right increase the score by one
+        score++/2
+        //play the correct answer sound effect
+        correctAnswer.play();
+    }
   }
 
   function mousePressed(){
