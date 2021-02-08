@@ -19,11 +19,18 @@ let instrumentData= undefined;
 let objectData= undefined;
 let tarotData= undefined;
 
+let redTones=0;
+
+
+let fingerprint;
 
 function preload() {
   instrumentData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json`);
   objectData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/objects/objects.json`);
   tarotData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json`)
+
+
+  fingerprint = loadImage('assets/images/fingerprint2.png');
 }
 
 
@@ -61,21 +68,27 @@ function generateSpyProfile(){
 
 
 function draw() {
-  background(255);
+  background(0);
+push();
 
-  let profile =`**SPY PROFILE**
+  let profile =`**SECURITY CHECK. CONFORM YOUR IDENTITY**
 
   Name: ${spyProfile.name}
   Alias: ${spyProfile.alias}
   Secret Weapon: ${spyProfile.secretWeapon}
   Password: ${spyProfile.password}`;
-
+pop();
   push();
-  textSize(24);
+  textSize(44);
   textAlign(LEFT);
-  fill(0);
-  text(profile,1400,700)
+  textFont(`Courier, monospace`)
+  redTones=random(100,250)
+  fill(redTones,0,0)
+  text(profile,100,450)
   pop();
+
+
+  image(fingerprint,200,850,500)
 }
 
 function keyPressed(){
