@@ -21,6 +21,12 @@ let tarotData= undefined;
 
 let redTones=0;
 
+let glitch={
+  x:0,
+  y:0,
+  height:0,
+  width:90
+}
 
 let fingerprint;
 
@@ -71,7 +77,7 @@ function draw() {
   background(0);
 push();
 
-  let profile =`**SECURITY CHECK. CONFORM YOUR IDENTITY**
+  let profile =`**SECURITY CHECK. CONFIRM YOUR IDENTITY**
 
   Name: ${spyProfile.name}
   Alias: ${spyProfile.alias}
@@ -87,6 +93,14 @@ pop();
   text(profile,100,450)
   pop();
 
+  push()
+  rectMode(LEFT);
+  fill(125)
+  glitch.y=random(0,4000);
+  glitch.height=random(10,20);
+  glitch.width=windowWidth;
+  rect(0,glitch.y,glitch.width,glitch.height)
+  pop()
 
   image(fingerprint,200,850,500)
 }
