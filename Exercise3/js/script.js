@@ -77,3 +77,9 @@ function draw() {
   text(profile,1400,700)
   pop();
 }
+
+function keyPressed(){
+  if(key === `c`){
+    localStorage.removeItem(`spy-profile-data`)
+  }
+}
