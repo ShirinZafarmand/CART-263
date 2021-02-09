@@ -83,7 +83,12 @@ function setup() {
     generateSpyProfile();
   }
 
-
+  let buttonColor = color(50);
+  button = createButton('Generate Another Profile');
+  button.style('font-size','30px');
+  button.style('background-color', buttonColor);
+  button.position(150,700);
+  button.mousePressed(generateSpyProfile);
 }
 
 
