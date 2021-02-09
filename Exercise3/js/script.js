@@ -21,14 +21,28 @@ let tarotData= undefined;
 
 let redTones=0;
 
+let aliesAnswer;
+let secretWeaponAnswer;
+let aliesFinalAnswer;
+let secretWeaponFinalAnswer;
+
 let glitch={
   x:0,
   y:0,
   height:0,
-  width:90
+  width:90,
 }
 
+
+let bg={
+  r:0,
+  g:0,
+  b:0
+}
+
+let hiddenAlies;
 let fingerprint;
+let button;
 
 function preload() {
   instrumentData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json`);
@@ -43,14 +57,24 @@ function preload() {
 function setup() {
   createCanvas(windowWidth,windowHeight);
 
+  if (annyang){
+    let commands = {
+      'enter the *aliesAnswer': aliesLogIn,
+    };
+
+    annyang.addCommands(commands);
+    annyang.start();
+  }
+
 
   let data = JSON.parse(localStorage.getItem(`spy-profile-data`));
 
   if (data !== null){
     let password= prompt(`password?`);
-    if(password===data.password){
+    if(password===data.password ){
+      alert(`Prove you are human by saying the alies. When ready say: enter the *alies_name*`)
       spyProfile.name= data.name;
-      spyProfile.alias=data.alias;
+      spyProfile.alias=hiddenAlies;
       spyProfile.secretWeapon= data.secretWeapon;
       spyProfile.password= data.password;
     }
@@ -58,6 +82,8 @@ function setup() {
   else{
     generateSpyProfile();
   }
+
+
 }
 
 
@@ -74,16 +100,16 @@ function generateSpyProfile(){
 
 
 function draw() {
-  background(0);
+  background(bg.r,bg.g,bg.b);
 push();
 
   let profile =`**SECURITY CHECK. CONFIRM YOUR IDENTITY**
-
   Name: ${spyProfile.name}
   Alias: ${spyProfile.alias}
   Secret Weapon: ${spyProfile.secretWeapon}
   Password: ${spyProfile.password}`;
-pop();
+
+  pop();
   push();
   textSize(44);
   textAlign(LEFT);
@@ -105,8 +131,21 @@ pop();
   image(fingerprint,200,850,500)
 }
 
+
 function keyPressed(){
   if(key === `c`){
     localStorage.removeItem(`spy-profile-data`)
+  }
+}
+
+
+function aliesLogIn(aliesAnswer){
+  aliesFinalAnswer = aliesAnswer;
+  if(aliesFinalAnswer===spyProfile.alias){
+    alert(`correct`);
+    hiddenAlies = data.alies;
+  }
+  else {
+    bg.r=100
   }
 }

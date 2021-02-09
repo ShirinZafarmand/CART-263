@@ -170,8 +170,8 @@ let timer;
 let state ='title';
 let pitch=1.35;
 let rate=1.5;
-let pitchIncrease=0.001/6
-let rateIncrease=0.0001/5;
+let pitchIncrease=0
+let rateIncrease=0
 
 function preload(){
   //load the correct answer sound effect
