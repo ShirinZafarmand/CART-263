@@ -59,7 +59,7 @@ function setup() {
 
   if (annyang){
     let commands = {
-      'enter the *aliesAnswer': aliesLogIn,
+      'enter the *aliesAnswer': areYouHuman,
     };
 
     annyang.addCommands(commands);
@@ -138,19 +138,19 @@ push();
 
 
 function keyPressed(){
-  if(key === `c`){
+  if(key === `d`){
     localStorage.removeItem(`spy-profile-data`)
   }
 }
 
 
-function aliesLogIn(aliesAnswer){
+function areYouHuman(aliesAnswer){
   aliesFinalAnswer = aliesAnswer;
   if(aliesFinalAnswer===spyProfile.alias){
-    alert(`correct`);
+    alert(`**Access Granted**`);
     hiddenAlies = data.alies;
   }
   else {
-    bg.r=100
+    alert(`**Access Restricted**`);
   }
 }
