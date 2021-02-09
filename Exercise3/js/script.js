@@ -12,12 +12,14 @@ let spyProfile={
   name: `**REDACTED**`,
   alias: `**REDACTED**`,
   secretWeapon: `**REDACTED**`,
-  password: `**REDACTED**`
+  password: `**REDACTED**`,
+  missionPartner:`**REDACTED**`
 };
 
 let instrumentData= undefined;
 let objectData= undefined;
 let tarotData= undefined;
+let wrestlerData=undefined;
 
 let redTones=0;
 
@@ -48,7 +50,7 @@ function preload() {
   instrumentData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json`);
   objectData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/objects/objects.json`);
   tarotData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json`)
-
+  wrestlerData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/humans/wrestlers.json`)
 
   fingerprint = loadImage('assets/images/fingerprint2.png');
 }
@@ -77,6 +79,7 @@ function setup() {
       spyProfile.alias=hiddenAlies;
       spyProfile.secretWeapon= data.secretWeapon;
       spyProfile.password= data.password;
+      spyProfile.missionPartner=data.missionPartner
     }
   }
   else{
@@ -87,7 +90,7 @@ function setup() {
   button = createButton('Generate Another Profile');
   button.style('font-size','30px');
   button.style('background-color', buttonColor);
-  button.position(150,700);
+  button.position(150,750);
   button.mousePressed(generateSpyProfile);
 }
 
@@ -97,6 +100,7 @@ function generateSpyProfile(){
   let instrument = random(instrumentData.instruments);
   spyProfile.alias = `The ${instrument}`;
   spyProfile.secretWeapon= random(objectData.objects);
+  spyProfile.missionPartner=random(wrestlerData.wrestlers)
   let card= random(tarotData.tarot_interpretations);
   spyProfile.password = random(card.keywords);
 
@@ -112,7 +116,9 @@ push();
   Name: ${spyProfile.name}
   Alias: ${spyProfile.alias}
   Secret Weapon: ${spyProfile.secretWeapon}
-  Password: ${spyProfile.password}`;
+  Password: ${spyProfile.password}
+  Mission Partner: ${spyProfile.missionPartner}`;
+
 
   pop();
   push();
