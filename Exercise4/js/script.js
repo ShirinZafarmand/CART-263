@@ -14,13 +14,16 @@ let video= undefined;
 let handpose= undefined;
 // the  predictions made once it's running
 let predictions =[];
-//the bubble
-let bubble = undefined;
 //scores
 let score=0;
-//bubble arrays
-let bubbleSquad=[];
-let bubbleNumber=5;
+let balls=[];
+let numBalls= 100;
+
+let bg={
+  r:0,
+  g:0,
+  b:0,
+};
 
 
 function preload() {
@@ -28,7 +31,7 @@ function preload() {
 
 
 function setup() {
-  createCanvas(1000,800);
+  createCanvas(1000,600);
   textSize(32);
   textAlign(CENTER,CENTER);
   //start the webcam and hide the html element
@@ -48,16 +51,17 @@ function setup() {
     predictions= results;
   });
 
-
-  //bubble
-  for (let i = 0; i < bubbleNumber; i++){
-    bubbleSquad[i]= createbubble();
-  };
+  for( let i=0; i <numBalls; i++){
+    let x=random(0,width);
+    let y= random(-5000,-50);
+    let ball = new Ball(x,y);
+    balls.push(ball);
+  }
 }
 
 
 function draw() {
-  background(0);
+  background(bg.r,bg.g,bg.b);
   //score displey
   push()
   fill(255,0,0)
@@ -85,44 +89,13 @@ function draw() {
     fill(255);
     ellipse(baseX, baseY, 20);
     pop();
-
-
-    for (let i = 0; i<bubbleSquad.length; i++){
-      let bubble=bubbleSquad[i];
-
-      //check bubble popping
-      let d= dist(tipX, tipY, bubble.x, bubble.y);
-      if(d < bubble.size/2){
-        bubble.x=random(width);
-        bubble.y=height;
-        score=score+1;
-      }
-
-      //move the Bubble
-      bubble.x+=bubble.vx;
-      bubble.y+=bubble.vy;
-
-      if(bubble.y<0){
-        bubble.x =random (width);
-        bubble.y = height;
-      }
-
-      push();
-      fill(0,100,200);
-      noStroke();
-      ellipse(bubble.x,bubble.y, bubble.size);
-      pop();
     }
-  }
-}
 
-function createbubble(){
-  let bubble={
-    x:random(width),
-    y:random(-200,0),
-    size:100,
-    vx:0,
-    vy:-2
-  };
-  return bubble;
-};
+    for( let i=0; i<balls.length; i++){
+      let ball=balls[i];
+      if (ball.active){
+        ball.move();
+        ball.display();
+      };
+    };
+  }
