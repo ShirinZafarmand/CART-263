@@ -16,17 +16,22 @@ let handpose= undefined;
 let predictions =[];
 //scores
 let score=0;
-let balls=[];
-let numBalls= 100;
-
+let bubble=undefined;
 let bg={
   r:0,
   g:0,
   b:0,
 };
 
+let submarine={
+  x:0,
+  y:0,
+  size:200,
+  image:undefined
+}
 
 function preload() {
+  submarine.image=loadImage(`assets/images/submarine.png`)
 }
 
 
@@ -51,17 +56,20 @@ function setup() {
     predictions= results;
   });
 
-  for( let i=0; i <numBalls; i++){
-    let x=random(0,width);
-    let y= random(-5000,-50);
-    let ball = new Ball(x,y);
-    balls.push(ball);
+  //bubbles
+  bubble={
+    x:random(width),
+    y:0,
+    size:50,
+    vx:0,
+    vy:4
   }
 }
 
 
 function draw() {
   background(bg.r,bg.g,bg.b);
+  bg.b+=0.05
   //score displey
   push()
   fill(255,0,0)
@@ -76,26 +84,35 @@ function draw() {
     let baseX= base[0];
     let baseY= base[1];
 
-    push();
-    noFill();
-    stroke(255,255,255);
-    strokeWeight(2);
-    line(baseX, baseY, tipX, tipY);
-    pop();
 
-//pin head
-    push();
-    noStroke();
-    fill(255);
-    ellipse(baseX, baseY, 20);
-    pop();
+    submarine.x= baseX
+    submarine.y=baseY
+    let dis= dist(baseX,baseY,tipX,tipY)
+
+    //submarine machine
+    imageMode(CENTER);
+    image(submarine.image,submarine.x,submarine.y,dis,dis)
+
+
+    //check
+    let d=dist(tipX,tipY,bubble.x,bubble.y);
+    if(d<bubble.size/2){
+      bg.r=100
     }
-
-    for( let i=0; i<balls.length; i++){
-      let ball=balls[i];
-      if (ball.active){
-        ball.move();
-        ball.display();
-      };
-    };
   }
+
+  //move the bubbles
+  bubble.x+=bubble.vx;
+  bubble.y+=bubble.vy;
+
+  if(bubble.y>windowHeight){
+    bubble.x=random(0,width);
+    bubble.y=0;
+  }
+
+  push();
+  fill(0,100,200);
+  noStroke();
+  ellipse(bubble.x,bubble.y,bubble.size);
+  pop();
+}

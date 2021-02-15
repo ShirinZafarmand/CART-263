@@ -34,4 +34,12 @@ class Ball{
     ellipse(this.x,this.y,this.size);
     pop();
   };
+
+  //check if the touch
+  checkCollision(){
+  let d= dist(tipX,tipY,this.x,this.y);
+  if(d<this.size/2){
+    bg.r=255;
+  }
+}
 }
