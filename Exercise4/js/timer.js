@@ -5,7 +5,7 @@ class Timer{
     this.x=0;
     this.y=0;
     this.width=windowWidth;
-    this.height=windowHeight;
+    this.height=15;
     this.diminish=-4;
   };
 
@@ -13,23 +13,23 @@ class Timer{
   display(){
     push();
     rectMode(CORNER);
-    fill(127,50);
+    fill(255);
     rect(this.x,this.y,this.width,this.height);
     pop();
   };
 
   //the speed of the timer
   shrink(){
-    this.height=this.height+this.diminish;
+    this.width=this.width+this.diminish;
   };
 
   //when time is over then change the state
   timeOver(){
-    if(this.height<=0 ){
+    if(this.height<=0 && score<4){
         state='lose';
       }
       else if(this.height<=0 &&
-      score>10){
+      score>=4){
         state='win'
       }
     };
