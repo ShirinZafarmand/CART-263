@@ -17,11 +17,13 @@ let predictions =[];
 //scores
 let score=0;
 
+let timer;
+
 let jellyFishSquad=[];
 let squadSize=280;
 
-let bubble=undefined;
-
+let fish=undefined;
+let state ='title';
 
 let bg={
   r:0,
@@ -49,6 +51,9 @@ function setup() {
   video= createCapture(VIDEO);
   video.hide();
 
+  //constructiong the timer
+  timer= new Timer();
+
   //loading state
   handpose = ml5.handpose(video, {
     flipHorizontal:true
@@ -68,7 +73,7 @@ function setup() {
   };
 
   //bubbles
-  bubble={
+  fish={
     x:random(width),
     y:0,
     size:50,
@@ -91,12 +96,25 @@ function createjellyFish(x,y){
 
 
 function draw() {
+  if(state==='title'){
   background(bg.r,bg.g,bg.b);
   bg.b+=0.05
+
+  //displaying timer and showing the time that is left
+  timer.display();
+  timer.shrink();
+  //when time is over they lose
+  timer.timeOver();
+
+
   //score displey
   push()
   fill(255,0,0)
   text('Your Score: ' + score,100,20);
+
+  lost();
+  won();
+
   if(predictions.length>0){
     let hand= predictions[0];
     let index= hand.annotations.indexFinger;
@@ -114,7 +132,8 @@ function draw() {
 
     //submarine machine
     imageMode(CENTER);
-    image(submarine.image,submarine.x,submarine.y,d2,d2)
+    submarine.size=d2
+    image(submarine.image,submarine.x,submarine.y,submarine.size,submarine.size)
 
 
     for (let i = 0; i<jellyFishSquad.length; i++){
@@ -126,37 +145,58 @@ function draw() {
 
       jellyFish.y=jellyFish.y+jellyFish.speed
 
-
-
       //check
       let d=dist(submarine.x,submarine.y,jellyFish.x,jellyFish.y);
       if(d<jellyFish.size/2+d2/3){
         bg.r=100
-        score=score-1
+
       }
     }
 
-    //move the bubbles
-    bubble.x+=bubble.vx;
-    bubble.y+=bubble.vy;
 
-    if(bubble.y>windowHeight){
-      bubble.x=random(0,width);
-      bubble.y=0;
+    //move the bubbles
+    fish.x+=fish.vx;
+    fish.y+=fish.vy;
+
+    if(fish.y>windowHeight){
+      fish.x=random(0,width);
+      fish.y=0;
     }
 
     push();
     fill(0,100,200);
     noStroke();
-    ellipse(bubble.x,bubble.y,bubble.size);
+    ellipse(fish.x,fish.y,fish.size);
     pop();
 
-    let d3=dist(bubble.x,bubble.y,submarine.x,submarine.y)
-    if(d3<bubble.size/2+d2/2){
-      bg.g=200
-      bubble.x=random(0,width);
-      bubble.y=0;
+    let d3=dist(fish.x,fish.y,submarine.x,submarine.y)
+    if(d3<fish.size/2+d2/2){
+      fish.x=random(0,width);
+      fish.y=0;
       score++
     }
   }
+}
+lost();
+won();
+
+}
+
+function lost(){
+  if (state === 'lose'){
+    background(150,0,0);
+    fill(255);
+    //show the losing titration
+    text('You failed to spell these words correctly and in time' ,width/2,height/2);
+  };
+};
+
+
+function won(){
+  if (state === 'win'){
+    background(0,150,0);
+    fill(255);
+    //show the winning titration
+    text('Made it in time' ,width/2,height/2);
+  };
 }
