@@ -171,6 +171,7 @@ function keyPressed(){
 function areYouHuman(aliesAnswer){
   aliesFinalAnswer = aliesAnswer;
   //if the given answer for alies is correct, grant their further access
+  let data = JSON.parse(localStorage.getItem(`spy-profile-data`));
   if(aliesFinalAnswer===spyProfile.alias){
     alert(`**Access Granted**`);
     hiddenAlies = data.alies;
