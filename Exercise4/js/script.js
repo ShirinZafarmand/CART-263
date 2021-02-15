@@ -16,7 +16,11 @@ let handpose= undefined;
 let predictions =[];
 //scores
 let score=0;
-let bubble=undefined;
+
+let jellyFishSquad=[];
+let squadSize=280;
+
+
 let bg={
   r:0,
   g:0,
@@ -56,15 +60,22 @@ function setup() {
     predictions= results;
   });
 
-  //bubbles
-  bubble={
-    x:random(width),
-    y:0,
-    size:50,
-    vx:0,
-    vy:4
-  }
+
+  for (let i = 0; i < squadSize; i++){
+    jellyFishSquad[i]= createjellyFish(random(0,width),random(-5000,0));
+  };
 }
+
+
+function createjellyFish(x,y){
+  let jellyFish={
+    x:x,
+    y:y,
+    size:50,
+    speed:3,
+  };
+  return jellyFish;
+};
 
 
 function draw() {
@@ -87,32 +98,29 @@ function draw() {
 
     submarine.x= baseX
     submarine.y=baseY
-    let dis= dist(baseX,baseY,tipX,tipY)
+    let d2= dist(baseX,baseY,tipX,tipY)
 
     //submarine machine
     imageMode(CENTER);
-    image(submarine.image,submarine.x,submarine.y,dis,dis)
+    image(submarine.image,submarine.x,submarine.y,d2,d2)
 
 
-    //check
-    let d=dist(tipX,tipY,bubble.x,bubble.y);
-    if(d<bubble.size/2){
-      bg.r=100
-    }
+      for (let i = 0; i<jellyFishSquad.length; i++){
+        let jellyFish=jellyFishSquad[i];
+        push();
+        fill(235, 180, 52);
+        ellipse(jellyFish.x,jellyFish.y,jellyFish.size);
+        pop();
+
+        jellyFish.y=jellyFish.y+jellyFish.speed
+
+
+
+        //check
+        let d=dist(submarine.x,submarine.y,jellyFish.x,jellyFish.y);
+        if(d<jellyFish.size/2+d2/3){
+          bg.r=100
+        }
+      }
   }
-
-  //move the bubbles
-  bubble.x+=bubble.vx;
-  bubble.y+=bubble.vy;
-
-  if(bubble.y>windowHeight){
-    bubble.x=random(0,width);
-    bubble.y=0;
-  }
-
-  push();
-  fill(0,100,200);
-  noStroke();
-  ellipse(bubble.x,bubble.y,bubble.size);
-  pop();
 }
