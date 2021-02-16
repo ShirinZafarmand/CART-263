@@ -2,11 +2,12 @@
 Bubble Pop
 Shirin Zafarmand
 
-
+in this game a submarine is floating upward to the surface of water and faces a group of jellyfish which it has to avoid. along the way it has to
+catch the fish. the submarine moves according to the position of the palm. the size of the submarine is also based on how close or far the hand is
+from the webcam. before the time is over the user has to achieve 4 scores.
 */
 
 "use strict";
-
 
 //user's webcam
 let video= undefined;
@@ -45,7 +46,7 @@ function preload() {
 
 
 function setup() {
-  createCanvas(1000,600);
+  createCanvas(1500,1000);
   textSize(32);
   textAlign(CENTER,CENTER);
   //start the webcam and hide the html element
@@ -98,17 +99,21 @@ function createjellyFish(x,y){
 
 function draw() {
   if(state==='title'){
-    background(125)
+    background(125);
     fill(255);
+    push();
+    textSize(23);
     //the instruction of the game
-    text('1.',width/2,height/2);
-    text('2',width/2,height/2+50);
-
+    text('in this game a submarine is floating upward to the surface of water and faces a group of jellyfish which it has to avoid.',width/2,height/2);
+    text('along the way it has to catch the fish. the submarine moves according to the position of the palm.',width/2,height/2+50);
+    text('the size of the submarine is also based on how close or far the hand is from the webcam. before the time is over the user has to achieve 4 scores.',width/2,height/2+100);
+    text('before the time is over the user has to achieve 4 scores.',width/2,height/2+150);
+    pop();
   }
 
   else if(state==='start'){
     background(bg.r,bg.g,bg.b);
-    bg.b+=0.05
+    bg.b+=0.05;
 
     //displaying timer and showing the time that is left
     timer.display();
@@ -118,8 +123,8 @@ function draw() {
 
 
     //score displey
-    push()
-    fill(255,0,0)
+    push();
+    fill(255,0,0);
     text('Your Score: ' + score,100,40);
     pop();
 
@@ -135,17 +140,17 @@ function draw() {
       let baseY= base[1];
 
       //the position of the submarine machine is based on the position of the palm
-      submarine.x= baseX
-      submarine.y=baseY
+      submarine.x= baseX;
+      submarine.y=baseY;
 
       //measure the distance between the tip and the base
-      let d2= dist(baseX,baseY,tipX,tipY)
+      let d2= dist(baseX,baseY,tipX,tipY);
 
       //submarine machine
       imageMode(CENTER);
       //the distance of the base and index's tip as the image size
-      submarine.size=d2
-      image(submarine.image,submarine.x,submarine.y,submarine.size,submarine.size)
+      submarine.size=d2;
+      image(submarine.image,submarine.x,submarine.y,submarine.size,submarine.size);
 
       //dipsplaying the jellyfish
       for (let i = 0; i<jellyFishSquad.length; i++){
@@ -157,14 +162,14 @@ function draw() {
         pop();
 
         // moving the jellyfish
-        jellyFish.y=jellyFish.y+jellyFish.speed
+        jellyFish.y=jellyFish.y+jellyFish.speed;
         //increasing the jelyfish's speed by time
         jellyFish.speed=jellyFish.speed+jellyFish.speedIncrease;
 
         //check if the jelyfish has touched the submarine machine
         let d=dist(submarine.x,submarine.y,jellyFish.x,jellyFish.y);
         if(d<jellyFish.size/2+d2/3){
-          score=score-1
+          score=score-1;
         }
       }
 
@@ -175,7 +180,7 @@ function draw() {
       if(fish.y>windowHeight){
         fish.x=random(0,width);
         fish.y=0;
-      }
+      };
 
       //displaying the fish
       push();
@@ -189,23 +194,23 @@ function draw() {
       if(d3<fish.size/2+d2/2){
         fish.x=random(0,width);
         fish.y=0;
-        score++
-      }
-    }
+        score++;
+      };
+    };
   }
 
   //check if their score is at the determined rate to check if they have won or lost
   lost();
   won();
-
 }
+
 
 function lost(){
   if (state === 'lose'){
     background(150,0,0);
     fill(255);
     //show the losing titration
-    text('You failed' ,width/2,height/2);
+    text('sorry. You failed. maybe try again' ,width/2,height/2);
   };
 };
 
@@ -215,13 +220,14 @@ function won(){
     background(0,150,0);
     fill(255);
     //show the winning titration
-    text('Made it in time' ,width/2,height/2);
+    text('Made it in time.' ,width/2,height/2);
   };
 }
+
 
 function keyPressed(){
   if(keyCode===32 &&
     state==='title'){
       state='start';
-    }
-  }
+  };
+}
