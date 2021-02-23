@@ -42,4 +42,17 @@ function draw() {
 
   circus.x=constrain(circus.x,-circus.width+windowWidth,0);
   circus.y=constrain(circus.y,-circus.height+windowHeight,0);
+
+  if (keyIsDown(39)){
+    circus.x=circus.x-5;
+  };
+  if (keyIsDown(37)){
+    circus.x=circus.x+5;
+  };
+  if (keyIsDown(40)){
+    circus.y=circus.y-4
+  };
+  if (keyIsDown(38)){
+    circus.y=circus.y+4
+  };
 }
