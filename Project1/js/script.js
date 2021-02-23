@@ -20,6 +20,7 @@ let bg={
   b:0,
 };
 
+let backgroundMusic;
 
 let circus={
   x:0,
@@ -41,6 +42,7 @@ let buttonShadow={
 function preload() {
 circus.image=loadImage(`assets/images/background.jpg`);
 buttonShadow.image=loadImage(`assets/images/triangleStone2.png`);
+backgroundMusic= loadSound(`assets/sounds/creepyAudio.mp3`);
 }
 
 
@@ -67,10 +69,11 @@ function setup() {
 
 function draw() {
   background(bg.r,bg.g,bg.b);
+  backgroundMusic.play();
 
   imageMode(CORNER);
-  circus.width=windowWidth+2000
-  circus.height=windowHeight+1000
+  circus.width=6/5*windowWidth
+  circus.height=windowHeight
   image(circus.image,circus.x,circus.y,circus.width,circus.height);
 
   if (keyIsDown(39)){
@@ -79,12 +82,7 @@ function draw() {
   if (keyIsDown(37)){
     circus.x=circus.x+5;
   };
-  if (keyIsDown(40)){
-    circus.y=circus.y-4
-  };
-  if (keyIsDown(38)){
-    circus.y=circus.y+4
-  };
+
 
   //if there are predictions to show objects of the game
   if(predictions.length>0){
@@ -96,7 +94,6 @@ function draw() {
     let tipY= tip[1];
     let baseX= base[0];
     let baseY= base[1];
-
 
 
     buttonShadow.x= baseX;
