@@ -13,6 +13,8 @@ let video= undefined;
 let handpose= undefined;
 // the  predictions made once it's running
 let predictions =[];
+//scores
+let score=0;
 
 let bg={
   r:0,
@@ -68,6 +70,8 @@ backgroundMusic= loadSound(`assets/sounds/creepyAudio.mp3`);
 
 function setup() {
   createCanvas(windowWidth,windowHeight);
+  textSize(32);
+  textAlign(CENTER,CENTER);
   //start the webcam and hide the html element
   video= createCapture(VIDEO);
   video.hide();
@@ -95,21 +99,35 @@ function draw() {
   circus.height=windowHeight
   image(circus.image,circus.x,circus.y,circus.width,circus.height);
 
+  //score displey
+  push();
+  fill(255,0,0);
+  text(score + ' out of 3 eyes collected' ,180,40);
+  pop();
+
   if (keyIsDown(39)){
     circus.x=circus.x-5;
     ghostEye1.x=ghostEye1.x-5
+    ghostEye2.x=ghostEye2.x-5
+    ghostEye3.x=ghostEye3.x-5
   };
   if (keyIsDown(37)){
     circus.x=circus.x+5;
     ghostEye1.x=ghostEye1.x+5
+    ghostEye2.x=ghostEye2.x+5
+    ghostEye3.x=ghostEye3.x+5
   };
   if (keyIsDown(38)){
     circus.y=circus.y+5;
     ghostEye1.y=ghostEye1.y+5
+    ghostEye2.y=ghostEye2.y+5
+    ghostEye3.y=ghostEye3.y+5
   };
   if (keyIsDown(40)){
     circus.y=circus.y-5;
-    ghostEye1.y=ghostEye1.y5
+    ghostEye1.y=ghostEye1.y-5
+    ghostEye2.y=ghostEye2.y-5
+    ghostEye3.y=ghostEye3.y-5
   };
 
   //if there are predictions to show objects of the game
@@ -127,6 +145,7 @@ function draw() {
       let d1= dist(buttonShadow.x,buttonShadow.y,ghostEye1.x,ghostEye1.y)
       if(d1<=70){
         ghostEye1.display=true;
+        score++
       }
       else{
         ghostEye1.display=true;
@@ -141,6 +160,7 @@ function draw() {
       let d2= dist(buttonShadow.x,buttonShadow.y,ghostEye2.x,ghostEye2.y)
       if(d2<=70){
         ghostEye2.display=true;
+        score++
       }
       else{
         ghostEye2.display=true;
@@ -155,6 +175,7 @@ function draw() {
       let d3= dist(buttonShadow.x,buttonShadow.y,ghostEye3.x,ghostEye3.y)
       if(d3<=70){
         ghostEye3.display=true;
+        score++
       }
       else{
         ghostEye3.display=true;
