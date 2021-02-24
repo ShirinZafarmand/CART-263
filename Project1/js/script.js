@@ -38,6 +38,15 @@ let buttonShadow={
   image:undefined
 }
 
+let ghostEye1={
+  x:280,
+  y:730,
+  size:50,
+  display:false
+}
+
+
+
 
 function preload() {
 circus.image=loadImage(`assets/images/background.jpg`);
@@ -69,7 +78,6 @@ function setup() {
 
 function draw() {
   background(bg.r,bg.g,bg.b);
-  backgroundMusic.play();
 
   imageMode(CORNER);
   circus.width=6/5*windowWidth
@@ -78,11 +86,20 @@ function draw() {
 
   if (keyIsDown(39)){
     circus.x=circus.x-5;
+    ghostEye1.x=ghostEye1.x-5
   };
   if (keyIsDown(37)){
     circus.x=circus.x+5;
+    ghostEye1.x=ghostEye1.x+5
   };
-
+  if (keyIsDown(38)){
+    circus.y=circus.y+5;
+    ghostEye1.y=ghostEye1.y+5
+  };
+  if (keyIsDown(40)){
+    circus.y=circus.y-5;
+    ghostEye1.y=ghostEye1.y5
+  };
 
   //if there are predictions to show objects of the game
   if(predictions.length>0){
@@ -96,12 +113,26 @@ function draw() {
     let baseY= base[1];
 
 
+      let d= dist(buttonShadow.x,buttonShadow.y,ghostEye1.x,ghostEye1.y)
+      if(d<=70){
+        ghostEye1.display=true;
+      }
+      else{
+        ghostEye1.display=true;
+      }
+
+      if(ghostEye1.display===true){
+        fill(255)
+        ellipse(ghostEye1.x,ghostEye1.y,ghostEye1.size)
+      }
+
+
     buttonShadow.x= baseX;
     buttonShadow.y=baseY;
 
-    imageMode(CORNER);
+    imageMode(CENTER);
     image(buttonShadow.image,buttonShadow.x,buttonShadow.y,buttonShadow.width,buttonShadow.height);
     circus.x=constrain(circus.x,-circus.width+windowWidth,0);
-    circus.y=constrain(circus.y,-circus.height+windowHeight,0);
+    circus.y=constrain(circus.y,-circus.height/2,0);
   }
 }
