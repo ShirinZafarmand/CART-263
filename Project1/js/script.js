@@ -45,8 +45,19 @@ let ghostEye1={
   display:false
 }
 
+let ghostEye2={
+  x:280,
+  y:630,
+  size:50,
+  display:false
+}
 
-
+let ghostEye3={
+  x:280,
+  y:530,
+  size:50,
+  display:false
+}
 
 function preload() {
 circus.image=loadImage(`assets/images/background.jpg`);
@@ -113,18 +124,46 @@ function draw() {
     let baseY= base[1];
 
 
-      let d= dist(buttonShadow.x,buttonShadow.y,ghostEye1.x,ghostEye1.y)
-      if(d<=70){
+      let d1= dist(buttonShadow.x,buttonShadow.y,ghostEye1.x,ghostEye1.y)
+      if(d1<=70){
         ghostEye1.display=true;
       }
       else{
         ghostEye1.display=true;
       }
-
       if(ghostEye1.display===true){
         fill(255)
         ellipse(ghostEye1.x,ghostEye1.y,ghostEye1.size)
       }
+
+
+
+      let d2= dist(buttonShadow.x,buttonShadow.y,ghostEye2.x,ghostEye2.y)
+      if(d2<=70){
+        ghostEye2.display=true;
+      }
+      else{
+        ghostEye2.display=true;
+      }
+      if(ghostEye2.display===true){
+        fill(255)
+        ellipse(ghostEye2.x,ghostEye2.y,ghostEye2.size)
+      }
+
+
+
+      let d3= dist(buttonShadow.x,buttonShadow.y,ghostEye3.x,ghostEye3.y)
+      if(d3<=70){
+        ghostEye3.display=true;
+      }
+      else{
+        ghostEye3.display=true;
+      }
+      if(ghostEye3.display===true){
+        fill(255)
+        ellipse(ghostEye3.x,ghostEye3.y,ghostEye3.size)
+      }
+
 
 
     buttonShadow.x= baseX;
