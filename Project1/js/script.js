@@ -48,14 +48,14 @@ let ghostEye1={
 let ghostEye2={
   x:280,
   y:630,
-  size:50,
+  size:30,
   display:false
 }
 
 let ghostEye3={
   x:280,
   y:530,
-  size:50,
+  size:80,
   display:false
 }
 
@@ -132,7 +132,7 @@ function draw() {
         ghostEye1.display=true;
       }
       if(ghostEye1.display===true){
-        fill(255)
+        fill(0, 255, 238)
         ellipse(ghostEye1.x,ghostEye1.y,ghostEye1.size)
       }
 
@@ -146,7 +146,7 @@ function draw() {
         ghostEye2.display=true;
       }
       if(ghostEye2.display===true){
-        fill(255)
+        fill(187, 0, 255)
         ellipse(ghostEye2.x,ghostEye2.y,ghostEye2.size)
       }
 
