@@ -32,7 +32,7 @@ let circus={
   image:undefined
 }
 
-let buttonShadow={
+let triangleStone={
   x:0,
   y:0,
   width:600,
@@ -40,30 +40,40 @@ let buttonShadow={
   image:undefined
 }
 
+let buttonShadow={
+  x:0,
+  y:0,
+  width:0,
+  height:0,
+  image:undefined,
+  shrink:5
+}
+
 let ghostEye1={
-  x:280,
-  y:730,
+  x:310,
+  y:750,
   size:50,
   display:false
 }
 
 let ghostEye2={
-  x:280,
-  y:630,
+  x:1270,
+  y:950,
   size:30,
   display:false
 }
 
 let ghostEye3={
-  x:280,
-  y:530,
+  x:2400,
+  y:940,
   size:80,
   display:false
 }
 
 function preload() {
 circus.image=loadImage(`assets/images/background.jpg`);
-buttonShadow.image=loadImage(`assets/images/triangleStone2.png`);
+triangleStone.image=loadImage(`assets/images/triangleStone2.png`);
+buttonShadow.image=loadImage(`assets/images/BUTTON.png`);
 backgroundMusic= loadSound(`assets/sounds/creepyAudio.mp3`);
 }
 
@@ -142,7 +152,7 @@ function draw() {
     let baseY= base[1];
 
 
-      let d1= dist(buttonShadow.x,buttonShadow.y,ghostEye1.x,ghostEye1.y)
+      let d1= dist(triangleStone.x,triangleStone.y,ghostEye1.x,ghostEye1.y)
       if(d1<=70){
         ghostEye1.display=true;
         score++
@@ -156,8 +166,7 @@ function draw() {
       }
 
 
-
-      let d2= dist(buttonShadow.x,buttonShadow.y,ghostEye2.x,ghostEye2.y)
+      let d2= dist(triangleStone.x,triangleStone.y,ghostEye2.x,ghostEye2.y)
       if(d2<=70){
         ghostEye2.display=true;
         score++
@@ -171,8 +180,7 @@ function draw() {
       }
 
 
-
-      let d3= dist(buttonShadow.x,buttonShadow.y,ghostEye3.x,ghostEye3.y)
+      let d3= dist(triangleStone.x,triangleStone.y,ghostEye3.x,ghostEye3.y)
       if(d3<=70){
         ghostEye3.display=true;
         score++
@@ -185,14 +193,22 @@ function draw() {
         ellipse(ghostEye3.x,ghostEye3.y,ghostEye3.size)
       }
 
-
-
-    buttonShadow.x= baseX;
-    buttonShadow.y=baseY;
+    triangleStone.x= baseX;
+    triangleStone.y=baseY;
 
     imageMode(CENTER);
-    image(buttonShadow.image,buttonShadow.x,buttonShadow.y,buttonShadow.width,buttonShadow.height);
+    image(triangleStone.image,triangleStone.x,triangleStone.y,triangleStone.width,triangleStone.height);
     circus.x=constrain(circus.x,-circus.width+windowWidth,0);
     circus.y=constrain(circus.y,-circus.height/2,0);
   }
+
+  push()
+  imageMode(CENTER)
+  buttonShadow.x=windowWidth/2
+  buttonShadow.y=windowHeight/2
+
+  buttonShadow.width=5.5*windowWidth
+  buttonShadow.height=5*windowWidth
+  image(buttonShadow.image,buttonShadow.x,buttonShadow.y,buttonShadow.width,buttonShadow.height)
+  pop()
 }
