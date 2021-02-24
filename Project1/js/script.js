@@ -43,8 +43,8 @@ let triangleStone={
 let buttonShadow={
   x:0,
   y:0,
-  width:0,
-  height:0,
+  width:14000,
+  height:13000,
   image:undefined,
   shrink:5
 }
@@ -206,9 +206,9 @@ function draw() {
   imageMode(CENTER)
   buttonShadow.x=windowWidth/2
   buttonShadow.y=windowHeight/2
-
-  buttonShadow.width=5.5*windowWidth
-  buttonShadow.height=5*windowWidth
   image(buttonShadow.image,buttonShadow.x,buttonShadow.y,buttonShadow.width,buttonShadow.height)
   pop()
+
+  buttonShadow.height=buttonShadow.height-buttonShadow.shrink
+  buttonShadow.width=buttonShadow.width-buttonShadow.shrink
 }
