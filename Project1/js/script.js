@@ -43,7 +43,7 @@ let triangleStone={
 let buttonShadow={
   x:0,
   y:0,
-  width:14000,
+  width:13800,
   height:13000,
   image:undefined,
   shrink:5
@@ -102,18 +102,22 @@ function setup() {
 
 
 function draw() {
+  if(state==='title'){
+    background(125);
+    fill(255);
+    push();
+    textSize(23);
+    //the instruction of the game
+    text('instructions',width/2,height/2);
+    pop();
+  }
+  else if(state==='start'){
   background(bg.r,bg.g,bg.b);
 
   imageMode(CORNER);
   circus.width=6/5*windowWidth
   circus.height=windowHeight
   image(circus.image,circus.x,circus.y,circus.width,circus.height);
-
-  //score displey
-  push();
-  fill(255,0,0);
-  text(score + ' out of 3 eyes collected' ,180,40);
-  pop();
 
   if (keyIsDown(39)){
     circus.x=circus.x-5;
@@ -140,6 +144,17 @@ function draw() {
     ghostEye3.y=ghostEye3.y-5
   };
 
+
+  push()
+  imageMode(CENTER)
+  buttonShadow.x=windowWidth/2
+  buttonShadow.y=windowHeight/2
+  image(buttonShadow.image,buttonShadow.x,buttonShadow.y,buttonShadow.width,buttonShadow.height)
+  pop()
+
+  buttonShadow.height=buttonShadow.height-buttonShadow.shrink
+  buttonShadow.width=buttonShadow.width-buttonShadow.shrink
+
   //if there are predictions to show objects of the game
   if(predictions.length>0){
     let hand= predictions[0];
@@ -155,10 +170,10 @@ function draw() {
       let d1= dist(triangleStone.x,triangleStone.y,ghostEye1.x,ghostEye1.y)
       if(d1<=70){
         ghostEye1.display=true;
-        score++
+        background(110,100,100)
       }
       else{
-        ghostEye1.display=true;
+        ghostEye1.display=false;
       }
       if(ghostEye1.display===true){
         fill(0, 255, 238)
@@ -172,7 +187,7 @@ function draw() {
         score++
       }
       else{
-        ghostEye2.display=true;
+        ghostEye2.display=false;
       }
       if(ghostEye2.display===true){
         fill(187, 0, 255)
@@ -186,7 +201,7 @@ function draw() {
         score++
       }
       else{
-        ghostEye3.display=true;
+        ghostEye3.display=false;
       }
       if(ghostEye3.display===true){
         fill(255)
@@ -202,13 +217,42 @@ function draw() {
     circus.y=constrain(circus.y,-circus.height/2,0);
   }
 
-  push()
-  imageMode(CENTER)
-  buttonShadow.x=windowWidth/2
-  buttonShadow.y=windowHeight/2
-  image(buttonShadow.image,buttonShadow.x,buttonShadow.y,buttonShadow.width,buttonShadow.height)
-  pop()
+  //score displey
+  push();
+  fill(255,0,0);
+  text(score + ' out of 3 eyes collected' ,180,40);
+  pop();
+}
 
-  buttonShadow.height=buttonShadow.height-buttonShadow.shrink
-  buttonShadow.width=buttonShadow.width-buttonShadow.shrink
+//check if their score is at the determined rate to check if they have won or lost
+lost();
+won();
+}
+
+
+function lost(){
+  if (state === 'lose'){
+    background(150,0,0);
+    fill(255);
+    //show the losing titration
+    text('sorry. You failed. maybe try again' ,width/2,height/2);
+  };
+};
+
+
+function won(){
+  if (state === 'win'){
+    background(0,150,0);
+    fill(255);
+    //show the winning titration
+    text('Made it in time.' ,width/2,height/2);
+  };
+}
+
+
+function keyPressed(){
+  if(keyCode===32 &&
+    state==='title'){
+      state='start';
+  };
 }
