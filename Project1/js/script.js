@@ -279,7 +279,7 @@ function draw() {
 
     //if the have collected all three eye balls, they win
     if(buttonShadow.height<windowHeight || buttonShadow.width<windowWidth && score>=3){
-      background(113, 128, 127)
+      background(66, 74, 73)
       fill(255);
       //show the winning titration
       text('Thank You for saving us!' ,width/2,height/2);
@@ -287,7 +287,7 @@ function draw() {
 
     //if the haven't collected all three eye balls, they lsoe
     if(buttonShadow.height<windowHeight || buttonShadow.width<windowWidth && score<3){
-      background(113, 128, 127)
+      background(66, 74, 73)
       fill(255);
       //show the losing titration
       text('Oh no it is too late...' ,width/2,height/2);
