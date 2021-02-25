@@ -125,11 +125,6 @@ function draw() {
     if(introductionAudio.isPlaying()==false){
       introductionAudio.play();
     }
-
-  }
-  else if(state==='start'){
-    //stopping the audio when the game starts
-    introductionAudio.stop();
   }
 
   if(state==='title'){
@@ -264,15 +259,13 @@ function stone1Discovery(){
   let d1= dist(triangleStone.x,triangleStone.y,ghostEye1.x,ghostEye1.y);
   if(d1<=70){
     ghostEye1.display=true;
+    if(ghostEye1.found==false){
+      //once the eye number 2 is found, the score goes higher
+      score++;
+      ghostEye1.found=true;
+    }
   }
-  else{
-    ghostEye1.display=false;
-  }
-  if(ghostEye1.found==false){
-    //once the eye number 2 is found, the score goes higher
-    score++;
-    ghostEye1.found=true;
-  }
+
   else{
     ghostEye1.found=false;
   }
@@ -287,15 +280,16 @@ function stone2Discovery(){
   let d2= dist(triangleStone.x,triangleStone.y,ghostEye2.x,ghostEye2.y);
   if(d2<=70){
     ghostEye2.display=true;
+    if(ghostEye2.found==false){
+      //once the eye number 2 is found, the score goes higher
+      score++;
+      ghostEye2.found=true;
+    }
   }
   else{
     ghostEye2.display=false;
   }
-  if(ghostEye2.found==false){
-    //once the eye number 2 is found, the score goes higher
-    score++;
-    ghostEye2.found=true;
-  }
+
   if(ghostEye2.display===true){
     fill(100,0,0);
     //diplaying the eye balls number 2
@@ -307,15 +301,12 @@ function stone3Discovery(){
   let d3= dist(triangleStone.x,triangleStone.y,ghostEye3.x,ghostEye3.y)
   if(d3<=70){
     ghostEye3.display=true;
+
   }
   else{
     ghostEye3.display=false;
   }
-  if(ghostEye3.found==false){
-    //once the eye number 2 is found, the score goes higher
-    score++;
-    ghostEye3.found=true;
-  }
+
   if(ghostEye3.display===true){
     fill(255)
     //diplaying the eye balls number 3
