@@ -1,6 +1,8 @@
 /**
 Project 1
 Shirin Zafarmand
+
+Caroline(a stop-motion peice) inspired game
 */
 
 "use strict";
@@ -13,6 +15,7 @@ let video= undefined;
 let handpose= undefined;
 // the  predictions made once it's running
 let predictions =[];
+
 //scores
 let score=0;
 
@@ -79,10 +82,15 @@ let ghostEye3={
 }
 
 function preload() {
+  //load circus Image as background
   circus.image=loadImage(`assets/images/background.jpg`);
+  //load trinagle stone image as an helping tool
   triangleStone.image=loadImage(`assets/images/triangleStone2.png`);
+  //load button shadow image as a timer
   buttonShadow.image=loadImage(`assets/images/BUTTON.png`);
+  //load the picture of 3 ghost children for the introduction
   childrenGhosts.image=loadImage(`assets/images/childrenGhosts.jpg`);
+  //load the instruction audio that playes over the ghost children image
   introductionAudio= loadSound(`assets/sounds/introAudio.m4a`);
 }
 
@@ -91,6 +99,7 @@ function setup() {
   createCanvas(windowWidth,windowHeight);
   textSize(32);
   textAlign(CENTER,CENTER);
+
   //start the webcam and hide the html element
   video= createCapture(VIDEO);
   video.hide();
@@ -108,22 +117,19 @@ function setup() {
 
 
 function draw() {
-
   if(state==='title'){
+    //playing introduction audio(an audio straight out of the animation)
     introductionAudio.play();
   }
   else if(state==='start'){
+    //stopping the audio when the game starts
     introductionAudio.stop();
   }
 
   if(state==='title'){
     background(7,7,7);
-    fill(255);
-    push();
-    textSize(23);
-    //the instruction of the game
-    text('instructions',width/2,height/2);
 
+    //3 ghost children image
     imageMode(CENTER)
     childrenGhosts.x=windowWidth/2
     childrenGhosts.y=windowHeight/2
@@ -132,6 +138,15 @@ function draw() {
     childrenGhosts.height=windowHeight
     image(childrenGhosts.image,childrenGhosts.x,childrenGhosts.y,childrenGhosts.width,childrenGhosts.height);
 
+    // the instruction of the game
+    fill(255);
+    push();
+    textSize(26);
+    text('Find our eyes. use the triangle stone to find them,',5.5*width/10,5*height/6);
+    text('they are only visible through th circle of the stone.',5.5*width/10,5*height/6+30);
+    text('Move your hand an press the arrow keys to vhange the view.',5.5*width/10,5*height/6+60)
+    text('find them before the button takes up the screen.',5.5*width/10,5*height/6+90)
+    text('Hurry! press the space key to start!',5.5*width/10,5*height/6+120)
     pop();
 
   }
@@ -140,11 +155,13 @@ function draw() {
   else if(state==='start'){
     background(bg.r,bg.g,bg.b);
 
+    //displaying the background image of the circus
     imageMode(CORNER);
     circus.width=6/5*windowWidth
     circus.height=windowHeight
     image(circus.image,circus.x,circus.y,circus.width,circus.height);
 
+    //pressing the arrow keys to help exploring the room
     if (keyIsDown(39)){
       circus.x=circus.x-5;
       ghostEye1.x=ghostEye1.x-5
@@ -170,7 +187,7 @@ function draw() {
       ghostEye3.y=ghostEye3.y-5
     };
 
-
+    //displaying the button shadow image
     push()
     imageMode(CENTER)
     buttonShadow.x=windowWidth/2
@@ -178,7 +195,7 @@ function draw() {
     image(buttonShadow.image,buttonShadow.x,buttonShadow.y,buttonShadow.width,buttonShadow.height)
     pop()
 
-    //if there are predictions to show objects of the game
+    //if there are predictions, the triangle stone and eye balls start to apear and function
     if(predictions.length>0){
       let hand= predictions[0];
       let index= hand.annotations.indexFinger;
@@ -189,10 +206,11 @@ function draw() {
       let baseX= base[0];
       let baseY= base[1];
 
-
+      //if the triangle stone is over eye balls, they appear on the screen
       let d1= dist(triangleStone.x,triangleStone.y,ghostEye1.x,ghostEye1.y)
       if(d1<=70){
         ghostEye1.display=true;
+        //once the eye number 1 is found, the score goes higher
         score++
       }
       else{
@@ -200,6 +218,7 @@ function draw() {
       }
       if(ghostEye1.display===true){
         fill(0, 255, 238)
+        //diplaying the eye balls number 1
         ellipse(ghostEye1.x,ghostEye1.y,ghostEye1.size)
       }
 
@@ -207,6 +226,7 @@ function draw() {
       let d2= dist(triangleStone.x,triangleStone.y,ghostEye2.x,ghostEye2.y)
       if(d2<=70){
         ghostEye2.display=true;
+        //once the eye number 2 is found, the score goes higher
         score++
       }
       else{
@@ -214,6 +234,7 @@ function draw() {
       }
       if(ghostEye2.display===true){
         fill(187, 0, 255)
+        //diplaying the eye balls number 2
         ellipse(ghostEye2.x,ghostEye2.y,ghostEye2.size)
       }
 
@@ -221,6 +242,7 @@ function draw() {
       let d3= dist(triangleStone.x,triangleStone.y,ghostEye3.x,ghostEye3.y)
       if(d3<=70){
         ghostEye3.display=true;
+        //once the eye number 3 is found, the score goes higher
         score++
       }
       else{
@@ -228,50 +250,52 @@ function draw() {
       }
       if(ghostEye3.display===true){
         fill(255)
+        //diplaying the eye balls number 3
         ellipse(ghostEye3.x,ghostEye3.y,ghostEye3.size)
       }
 
+      //the location of the triangle stone is where the hand is
       triangleStone.x= baseX;
       triangleStone.y=baseY;
 
+      //displying the triangle stone image
       imageMode(CENTER);
       image(triangleStone.image,triangleStone.x,triangleStone.y,triangleStone.width,triangleStone.height);
+
+      //constraing the movements of the background
       circus.x=constrain(circus.x,-circus.width+windowWidth,0);
       circus.y=constrain(circus.y,-circus.height/2,0);
     }
 
-    //score displey
+    //score display
     push();
     fill(255,0,0);
     text(score + ' out of 3 eyes collected' ,180,40);
     pop();
 
-    if(buttonShadow.width===2000){
-      background(150,0,0);
-      fill(255);
-      //show the losing titration
-      text('sorry. You failed. maybe try again' ,width/2,height/2);
-    }
-
-
+    //if the button shadow takes up almost the whole screen check the score
     buttonShadow.height=buttonShadow.height-buttonShadow.shrink
     buttonShadow.width=buttonShadow.width-1.05*buttonShadow.shrink
 
+    //if the have collected all three eye balls, they win
     if(buttonShadow.height<windowHeight || buttonShadow.width<windowWidth && score>=3){
-      background(100,100,100)
+      background(113, 128, 127)
       fill(255);
       //show the winning titration
-      text('Made it in time.' ,width/2,height/2);
+      text('Thank You for saving us!' ,width/2,height/2);
     }
+
+    //if the haven't collected all three eye balls, they lsoe
     if(buttonShadow.height<windowHeight || buttonShadow.width<windowWidth && score<3){
-      background(0,100,0)
+      background(113, 128, 127)
       fill(255);
       //show the losing titration
-      text('sorry. You failed. maybe try again' ,width/2,height/2);
+      text('Oh no it is too late...' ,width/2,height/2);
     }
   }
 }
 
+//press the space key to change the state to start
 function keyPressed(){
   if(keyCode===32 &&
     state==='title'){
