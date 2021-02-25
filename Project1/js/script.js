@@ -46,7 +46,7 @@ let buttonShadow={
   width:13800,
   height:13000,
   image:undefined,
-  shrink:5
+  shrink:15
 }
 
 let ghostEye1={
@@ -71,10 +71,10 @@ let ghostEye3={
 }
 
 function preload() {
-circus.image=loadImage(`assets/images/background.jpg`);
-triangleStone.image=loadImage(`assets/images/triangleStone2.png`);
-buttonShadow.image=loadImage(`assets/images/BUTTON.png`);
-backgroundMusic= loadSound(`assets/sounds/creepyAudio.mp3`);
+  circus.image=loadImage(`assets/images/background.jpg`);
+  triangleStone.image=loadImage(`assets/images/triangleStone2.png`);
+  buttonShadow.image=loadImage(`assets/images/BUTTON.png`);
+  backgroundMusic= loadSound(`assets/sounds/creepyAudio.mp3`);
 }
 
 
@@ -112,65 +112,62 @@ function draw() {
     pop();
   }
   else if(state==='start'){
-  background(bg.r,bg.g,bg.b);
+    background(bg.r,bg.g,bg.b);
 
-  imageMode(CORNER);
-  circus.width=6/5*windowWidth
-  circus.height=windowHeight
-  image(circus.image,circus.x,circus.y,circus.width,circus.height);
+    imageMode(CORNER);
+    circus.width=6/5*windowWidth
+    circus.height=windowHeight
+    image(circus.image,circus.x,circus.y,circus.width,circus.height);
 
-  if (keyIsDown(39)){
-    circus.x=circus.x-5;
-    ghostEye1.x=ghostEye1.x-5
-    ghostEye2.x=ghostEye2.x-5
-    ghostEye3.x=ghostEye3.x-5
-  };
-  if (keyIsDown(37)){
-    circus.x=circus.x+5;
-    ghostEye1.x=ghostEye1.x+5
-    ghostEye2.x=ghostEye2.x+5
-    ghostEye3.x=ghostEye3.x+5
-  };
-  if (keyIsDown(38)){
-    circus.y=circus.y+5;
-    ghostEye1.y=ghostEye1.y+5
-    ghostEye2.y=ghostEye2.y+5
-    ghostEye3.y=ghostEye3.y+5
-  };
-  if (keyIsDown(40)){
-    circus.y=circus.y-5;
-    ghostEye1.y=ghostEye1.y-5
-    ghostEye2.y=ghostEye2.y-5
-    ghostEye3.y=ghostEye3.y-5
-  };
+    if (keyIsDown(39)){
+      circus.x=circus.x-5;
+      ghostEye1.x=ghostEye1.x-5
+      ghostEye2.x=ghostEye2.x-5
+      ghostEye3.x=ghostEye3.x-5
+    };
+    if (keyIsDown(37)){
+      circus.x=circus.x+5;
+      ghostEye1.x=ghostEye1.x+5
+      ghostEye2.x=ghostEye2.x+5
+      ghostEye3.x=ghostEye3.x+5
+    };
+    if (keyIsDown(38)){
+      circus.y=circus.y+5;
+      ghostEye1.y=ghostEye1.y+5
+      ghostEye2.y=ghostEye2.y+5
+      ghostEye3.y=ghostEye3.y+5
+    };
+    if (keyIsDown(40)){
+      circus.y=circus.y-5;
+      ghostEye1.y=ghostEye1.y-5
+      ghostEye2.y=ghostEye2.y-5
+      ghostEye3.y=ghostEye3.y-5
+    };
 
 
-  push()
-  imageMode(CENTER)
-  buttonShadow.x=windowWidth/2
-  buttonShadow.y=windowHeight/2
-  image(buttonShadow.image,buttonShadow.x,buttonShadow.y,buttonShadow.width,buttonShadow.height)
-  pop()
+    push()
+    imageMode(CENTER)
+    buttonShadow.x=windowWidth/2
+    buttonShadow.y=windowHeight/2
+    image(buttonShadow.image,buttonShadow.x,buttonShadow.y,buttonShadow.width,buttonShadow.height)
+    pop()
 
-  buttonShadow.height=buttonShadow.height-buttonShadow.shrink
-  buttonShadow.width=buttonShadow.width-buttonShadow.shrink
-
-  //if there are predictions to show objects of the game
-  if(predictions.length>0){
-    let hand= predictions[0];
-    let index= hand.annotations.indexFinger;
-    let tip= index[3];
-    let base= index[0];
-    let tipX= tip[0];
-    let tipY= tip[1];
-    let baseX= base[0];
-    let baseY= base[1];
+    //if there are predictions to show objects of the game
+    if(predictions.length>0){
+      let hand= predictions[0];
+      let index= hand.annotations.indexFinger;
+      let tip= index[3];
+      let base= index[0];
+      let tipX= tip[0];
+      let tipY= tip[1];
+      let baseX= base[0];
+      let baseY= base[1];
 
 
       let d1= dist(triangleStone.x,triangleStone.y,ghostEye1.x,ghostEye1.y)
       if(d1<=70){
         ghostEye1.display=true;
-        background(110,100,100)
+        score++
       }
       else{
         ghostEye1.display=false;
@@ -208,51 +205,50 @@ function draw() {
         ellipse(ghostEye3.x,ghostEye3.y,ghostEye3.size)
       }
 
-    triangleStone.x= baseX;
-    triangleStone.y=baseY;
+      triangleStone.x= baseX;
+      triangleStone.y=baseY;
 
-    imageMode(CENTER);
-    image(triangleStone.image,triangleStone.x,triangleStone.y,triangleStone.width,triangleStone.height);
-    circus.x=constrain(circus.x,-circus.width+windowWidth,0);
-    circus.y=constrain(circus.y,-circus.height/2,0);
+      imageMode(CENTER);
+      image(triangleStone.image,triangleStone.x,triangleStone.y,triangleStone.width,triangleStone.height);
+      circus.x=constrain(circus.x,-circus.width+windowWidth,0);
+      circus.y=constrain(circus.y,-circus.height/2,0);
+    }
+
+    //score displey
+    push();
+    fill(255,0,0);
+    text(score + ' out of 3 eyes collected' ,180,40);
+    pop();
+
+    if(buttonShadow.width===2000){
+      background(150,0,0);
+      fill(255);
+      //show the losing titration
+      text('sorry. You failed. maybe try again' ,width/2,height/2);
+    }
+
+
+    buttonShadow.height=buttonShadow.height-buttonShadow.shrink
+    buttonShadow.width=buttonShadow.width-1.05*buttonShadow.shrink
+
+    if(buttonShadow.height<windowHeight || buttonShadow.width<windowWidth && score===3){
+      background(100,100,100)
+      fill(255);
+      //show the winning titration
+      text('Made it in time.' ,width/2,height/2);
+    }
+    if(buttonShadow.height<windowHeight || buttonShadow.width<windowWidth && score<3){
+      background(0,100,0)
+      fill(255);
+      //show the losing titration
+      text('sorry. You failed. maybe try again' ,width/2,height/2);
+    }
   }
-
-  //score displey
-  push();
-  fill(255,0,0);
-  text(score + ' out of 3 eyes collected' ,180,40);
-  pop();
 }
-
-//check if their score is at the determined rate to check if they have won or lost
-lost();
-won();
-}
-
-
-function lost(){
-  if (state === 'lose'){
-    background(150,0,0);
-    fill(255);
-    //show the losing titration
-    text('sorry. You failed. maybe try again' ,width/2,height/2);
-  };
-};
-
-
-function won(){
-  if (state === 'win'){
-    background(0,150,0);
-    fill(255);
-    //show the winning titration
-    text('Made it in time.' ,width/2,height/2);
-  };
-}
-
 
 function keyPressed(){
   if(keyCode===32 &&
     state==='title'){
       state='start';
-  };
-}
+    };
+  }
