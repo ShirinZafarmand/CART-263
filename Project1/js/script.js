@@ -40,6 +40,14 @@ let triangleStone={
   image:undefined
 }
 
+let childrenGhosts={
+  x:0,
+  y:0,
+  width:0,
+  height:0,
+  image:undefined
+}
+
 let buttonShadow={
   x:0,
   y:0,
@@ -74,6 +82,7 @@ function preload() {
   circus.image=loadImage(`assets/images/background.jpg`);
   triangleStone.image=loadImage(`assets/images/triangleStone2.png`);
   buttonShadow.image=loadImage(`assets/images/BUTTON.png`);
+  childrenGhosts.image=loadImage(`assets/images/childrenGhosts.jpg`);
   introductionAudio= loadSound(`assets/sounds/introAudio.m4a`);
 }
 
@@ -106,15 +115,25 @@ function draw() {
   else if(state==='start'){
     introductionAudio.stop();
   }
-  
+
   if(state==='title'){
-    background(125);
+    background(7,7,7);
     fill(255);
     push();
     textSize(23);
     //the instruction of the game
     text('instructions',width/2,height/2);
+
+    imageMode(CENTER)
+    childrenGhosts.x=windowWidth/2
+    childrenGhosts.y=windowHeight/2
+
+    childrenGhosts.width=0.65*windowWidth
+    childrenGhosts.height=windowHeight
+    image(childrenGhosts.image,childrenGhosts.x,childrenGhosts.y,childrenGhosts.width,childrenGhosts.height);
+
     pop();
+
   }
 
 
