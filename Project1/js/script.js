@@ -22,7 +22,7 @@ let bg={
   b:0,
 };
 
-let backgroundMusic;
+let introductionAudio;
 
 let circus={
   x:0,
@@ -74,7 +74,7 @@ function preload() {
   circus.image=loadImage(`assets/images/background.jpg`);
   triangleStone.image=loadImage(`assets/images/triangleStone2.png`);
   buttonShadow.image=loadImage(`assets/images/BUTTON.png`);
-  backgroundMusic= loadSound(`assets/sounds/creepyAudio.mp3`);
+  introductionAudio= loadSound(`assets/sounds/introAudio.m4a`);
 }
 
 
@@ -89,19 +89,24 @@ function setup() {
   //loading state
   handpose = ml5.handpose(video, {
     flipHorizontal:true
-  }, function(){
-    console.log(`model loaded.`);
   });
 
   //predict event
   handpose.on(`predict`, function(results) {
-    console.log(results);
     predictions= results;
   });
 }
 
 
 function draw() {
+
+  if(state==='title'){
+    introductionAudio.play();
+  }
+  else if(state==='start'){
+    introductionAudio.stop();
+  }
+  
   if(state==='title'){
     background(125);
     fill(255);
@@ -111,6 +116,8 @@ function draw() {
     text('instructions',width/2,height/2);
     pop();
   }
+
+
   else if(state==='start'){
     background(bg.r,bg.g,bg.b);
 
@@ -231,7 +238,7 @@ function draw() {
     buttonShadow.height=buttonShadow.height-buttonShadow.shrink
     buttonShadow.width=buttonShadow.width-1.05*buttonShadow.shrink
 
-    if(buttonShadow.height<windowHeight || buttonShadow.width<windowWidth && score===3){
+    if(buttonShadow.height<windowHeight || buttonShadow.width<windowWidth && score>=3){
       background(100,100,100)
       fill(255);
       //show the winning titration
