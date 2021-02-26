@@ -19,13 +19,16 @@ let predictions =[];
 //scores
 let score=0;
 
+let audioButton;
+let introductionAudio;
+let backgroundAudio;
+
 let bg={
   r:0,
   g:0,
   b:0,
 };
 
-let introductionAudio;
 
 let circus={
   x:0,
@@ -95,6 +98,8 @@ function preload() {
   childrenGhosts.image=loadImage(`assets/images/childrenGhosts.jpg`);
   //load the instruction audio that playes over the ghost children image
   introductionAudio= loadSound(`assets/sounds/introAudio.m4a`);
+  //game background Audio
+  backgroundAudio= loadSound(`assets/sounds/Dreaming.mp3`);
 }
 
 
@@ -121,10 +126,14 @@ function setup() {
 
 function draw() {
   if(state==='title'){
-    //playing introduction audio(an audio straight out of the animation)
-    if(introductionAudio.isPlaying()==false){
-      introductionAudio.play();
-    }
+    //creating a button for playing the audio
+    let buttonColor = color(50);
+    audioButton = createButton('Play the Guiding Audio');
+    audioButton.style('font-size','30px');
+    audioButton.style('background-color', buttonColor);
+    audioButton.position(10,70);
+    //if the button is pressed play the audio
+    audioButton.mousePressed(audio);
   }
 
   if(state==='title'){
@@ -149,8 +158,7 @@ function draw() {
     text('find them before the button takes up the screen.',5.5*width/10,5*height/6+90);
     text('Hurry! press the space key to start!',5.5*width/10,5*height/6+120);
     pop();
-
-  }
+ }
 
 
   else if(state==='start'){
@@ -224,6 +232,8 @@ function keyPressed(){
   if(keyCode===32 &&
     state==='title'){
       state='start';
+      //playing background audio(an audio straight out of the animation)
+        backgroundAudio.play();
     };
   }
 
@@ -334,4 +344,10 @@ function buttonShadowShrinking(){
     //show the losing titration
     text('Oh no it is too late...' ,width/2,height/2);
   }
+}
+
+function audio(){
+  //playing introduction audio(an audio straight out of the animation)
+    introductionAudio.play();
+
 }
