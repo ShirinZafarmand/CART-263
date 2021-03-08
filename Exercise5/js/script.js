@@ -19,7 +19,17 @@ let sevenSyllableLines=[
   `Nothing can satisfy you`,
   `They will not come back again`
 ];
+let backgroundGif=[
+  `css/one.gif`,
+  `css/two.gif`,
+  `css/three.gif`,
+  `css/four.gif`,
+  `css/five.gif`,
+  `css/six.gif`,
+  `css/seven.gif`
+]
 
+let background=random(backgroundGif);
 let line1=random(fiveSyllableLines);
 let line2=random(sevenSyllableLines);
 let line3=random(fiveSyllableLines);
@@ -36,11 +46,11 @@ line1P.innerText=line1;
 line2P.innerText=line2;
 line3P.innerText=line3;
 
-
 let position=0;
 let position2=0;
 let position3=0;
 
+document.getElementById(`image`).src=random(backgroundGif);
 
 let button=document.getElementById(`start-button`);
 button.addEventListener(`click`,function(event){
@@ -89,7 +99,6 @@ function moveLine2(){
     position2=0;
   }
 }
-
 
 let speed3=20;
 function moveLine3(){

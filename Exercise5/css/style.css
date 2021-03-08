@@ -6,8 +6,7 @@ By default that's nothing.
 **********************************************/
 body{
   background-color: #346276;
-  background-image: url(tenor.gif);
-  background-size: 75%;
+  background-size: cover;
 }
 
 #haiku{
