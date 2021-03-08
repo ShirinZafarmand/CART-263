@@ -94,7 +94,8 @@ function random(array){
 function moveLine1(){
     let line1position = document.getElementById("line-1")
     line1position.style.position="relative";
-    position +=10;
+    let speed=10
+    position +=speed;
     line1position.style.left= position + "px";
     setInterval(setNewLine(line1P),1000);
     if(position>window.innerWidth){
@@ -105,8 +106,9 @@ function moveLine1(){
 function moveLine2(){
     let line2position = document.getElementById("line-2")
     line2position.style.position="relative";
-    position2 +=10;
-    line2position.style.left= position + "px";
+    let speed2=15
+    position2 +=speed2;
+    line2position.style.left= position2 + "px";
     setInterval(setNewLine(line2P),1000);
     if(position2>window.innerWidth){
       position2=0
@@ -116,10 +118,15 @@ function moveLine2(){
 function moveLine3(){
     let line3position = document.getElementById("line-3")
     line3position.style.position="relative";
-    position3 +=10;
-    line3position.style.left= position + "px";
+    let speed3=20
+    position3 +=speed3;
+    line3position.style.left= position3 + "px";
     setInterval(setNewLine(line3P),1000);
-    if(position>window.innerWidth){
+    if(position3>window.innerWidth){
       position3=0
     }
+}
+
+function stop(){
+  clearTimeout(moveLine1);
 }
