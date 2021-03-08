@@ -41,9 +41,12 @@ line2P.addEventListener(`click`,lineClicked);
 line3P.addEventListener(`click`,lineClicked);
 
 
-
 setInterval(moveLine1,20)
 let position=0;
+setInterval(moveLine2,20)
+let position2=0;
+setInterval(moveLine3,20)
+let position3=0;
 
 function lineClicked(event){
   fadeOut(event.target,1);
@@ -93,4 +96,30 @@ function moveLine1(){
     line1position.style.position="relative";
     position +=10;
     line1position.style.left= position + "px";
+    setInterval(setNewLine(line1P),1000);
+    if(position>window.innerWidth){
+      position=0
+    }
+}
+
+function moveLine2(){
+    let line2position = document.getElementById("line-2")
+    line2position.style.position="relative";
+    position2 +=10;
+    line2position.style.left= position + "px";
+    setInterval(setNewLine(line2P),1000);
+    if(position2>window.innerWidth){
+      position2=0
+    }
+}
+
+function moveLine3(){
+    let line3position = document.getElementById("line-3")
+    line3position.style.position="relative";
+    position3 +=10;
+    line3position.style.left= position + "px";
+    setInterval(setNewLine(line3P),1000);
+    if(position>window.innerWidth){
+      position3=0
+    }
 }
