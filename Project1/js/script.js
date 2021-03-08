@@ -232,7 +232,7 @@ function keyPressed(){
   if(keyCode===32 &&
     state==='title'){
       state='start';
-      //playing background audio(an audio straight out of the animation)
+      //playing background audio
         backgroundAudio.play();
     };
   }
@@ -349,5 +349,4 @@ function buttonShadowShrinking(){
 function audio(){
   //playing introduction audio(an audio straight out of the animation)
     introductionAudio.play();
-
 }
