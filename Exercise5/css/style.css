@@ -13,3 +13,30 @@ body{
   font-size: 2rem;
   font-weight: bold;
 }
+
+#line-1{
+  position: absolute;
+  left:0px;
+  top:250px;
+}
+
+#line-2{
+  position: absolute;
+  left:0px;
+  top:300px;
+}
+
+#line-3{
+  position: absolute;
+  left:0px;
+  top:350px;
+}
+
+.intro{
+  position: absolute;
+  left: 0px;
+  top:600px;
+  font-size: 3rem;
+  background-color:white;
+  color: grey;
+}

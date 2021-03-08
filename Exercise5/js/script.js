@@ -41,6 +41,10 @@ line2P.addEventListener(`click`,lineClicked);
 line3P.addEventListener(`click`,lineClicked);
 
 
+
+setInterval(moveLine1,20)
+let position=0;
+
 function lineClicked(event){
   fadeOut(event.target,1);
 }
@@ -81,4 +85,12 @@ function setNewLine(element){
 function random(array){
   let index=Math.floor(Math.random()*array.length);
   return array[index]
+}
+
+
+function moveLine1(){
+    let line1position = document.getElementById("line-1")
+    line1position.style.position="relative";
+    position +=10;
+    line1position.style.left= position + "px";
 }
