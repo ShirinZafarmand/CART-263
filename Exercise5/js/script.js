@@ -36,45 +36,21 @@ line1P.innerText=line1;
 line2P.innerText=line2;
 line3P.innerText=line3;
 
-line1P.addEventListener(`click`,lineClicked);
-line2P.addEventListener(`click`,lineClicked);
-line3P.addEventListener(`click`,lineClicked);
 
-
-setInterval(moveLine1,20)
 let position=0;
-setInterval(moveLine2,20)
 let position2=0;
-setInterval(moveLine3,20)
 let position3=0;
 
-function lineClicked(event){
-  fadeOut(event.target,1);
-}
 
-function fadeOut(element,opacity){
-  opacity-=0.01;
-  element.style[`opacity`]=opacity;
-  if(opacity>0){
-    requestAnimationFrame(function(){
-      fadeOut(element,opacity);
-    });
-  }
-  else{
-    setNewLine(element);
-    fadeIn(element,0);
-  }
-}
+let button=document.getElementById(`start-button`);
+button.addEventListener(`click`,function(event){
+  requestAnimationFrame(function(){
+    moveLine1();
+    moveLine2();
+    moveLine3();
+  })
+});
 
-function fadeIn(element,opacity){
-  opacity+=0.01;
-  element.style[`opacity`]=opacity;
-  if(opacity<1){
-    requestAnimationFrame(function(){
-      fadeIn(element,opacity)
-    })
-  }
-}
 
 function setNewLine(element){
   if(element===line1P || element===line3P){
@@ -90,43 +66,39 @@ function random(array){
   return array[index]
 }
 
-
+let speed=10;
 function moveLine1(){
-    let line1position = document.getElementById("line-1")
-    line1position.style.position="relative";
-    let speed=10
-    position +=speed;
-    line1position.style.left= position + "px";
-    setInterval(setNewLine(line1P),1000);
-    if(position>window.innerWidth){
-      position=0
-    }
+  let line1position = document.getElementById("line-1")
+  line1position.style.position="relative";
+  position +=speed;
+  line1position.style.left= position + "px";
+  setInterval(setNewLine(line1P),1000);
+  if(position>window.innerWidth){
+    position=0;
+  }
 }
 
+let speed2=15;
 function moveLine2(){
-    let line2position = document.getElementById("line-2")
-    line2position.style.position="relative";
-    let speed2=15
-    position2 +=speed2;
-    line2position.style.left= position2 + "px";
-    setInterval(setNewLine(line2P),1000);
-    if(position2>window.innerWidth){
-      position2=0
-    }
+  let line2position = document.getElementById("line-2")
+  line2position.style.position="relative";
+  position2 +=speed2;
+  line2position.style.left= position2 + "px";
+  setInterval(setNewLine(line2P),1000);
+  if(position2>window.innerWidth){
+    position2=0;
+  }
 }
 
+
+let speed3=20;
 function moveLine3(){
-    let line3position = document.getElementById("line-3")
-    line3position.style.position="relative";
-    let speed3=20
-    position3 +=speed3;
-    line3position.style.left= position3 + "px";
-    setInterval(setNewLine(line3P),1000);
-    if(position3>window.innerWidth){
-      position3=0
-    }
-}
-
-function stop(){
-  clearTimeout(moveLine1);
+  let line3position = document.getElementById("line-3")
+  line3position.style.position="relative";
+  position3 +=speed3;
+  line3position.style.left= position3 + "px";
+  setInterval(setNewLine(line3P),1000);
+  if(position3>window.innerWidth){
+    position3=0;
+  }
 }
