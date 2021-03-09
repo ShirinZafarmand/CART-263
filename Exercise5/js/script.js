@@ -53,6 +53,9 @@ let position3=0;
 let button2=document.getElementById(`stop-button`);
 button2.addEventListener(`click`,function(event){
 document.getElementById(`image`).src=random(backgroundGif);
+clearTimeout(moveLine1);
+clearTimeout(moveLine2);
+clearTimeout(moveLine3);
 });
 
 
