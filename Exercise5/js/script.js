@@ -29,7 +29,6 @@ let backgroundGif=[
   `css/seven.gif`
 ]
 
-let background=random(backgroundGif);
 let line1=random(fiveSyllableLines);
 let line2=random(sevenSyllableLines);
 let line3=random(fiveSyllableLines);
@@ -50,7 +49,12 @@ let position=0;
 let position2=0;
 let position3=0;
 
+
+let button2=document.getElementById(`stop-button`);
+button2.addEventListener(`click`,function(event){
 document.getElementById(`image`).src=random(backgroundGif);
+});
+
 
 let button=document.getElementById(`start-button`);
 button.addEventListener(`click`,function(event){
