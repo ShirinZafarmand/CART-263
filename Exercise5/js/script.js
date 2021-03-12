@@ -53,19 +53,18 @@ let position3=0;
 let button2=document.getElementById(`stop-button`);
 button2.addEventListener(`click`,function(event){
 document.getElementById(`image`).src=random(backgroundGif);
-clearTimeout(moveLine1);
-clearTimeout(moveLine2);
-clearTimeout(moveLine3);
+clearInterval(haikuInterval);
 });
 
-
+let haikuInterval;
+let timebetweenItnervals = 20;
 let button=document.getElementById(`start-button`);
 button.addEventListener(`click`,function(event){
-  requestAnimationFrame(function(){
-    moveLine1();
-    moveLine2();
-    moveLine3();
-  })
+  haikuInterval=setInterval(function(){
+     moveLine1();
+     moveLine2();
+     moveLine3();
+   },timebetweenItnervals)
 });
 
 
