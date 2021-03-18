@@ -23,3 +23,9 @@ color:red;
   position: absolute;
   height:1400px;
 }
+
+#input{
+  position: absolute;
+  left:2200px;
+  top:50px;
+}

@@ -6,9 +6,7 @@ Shirin Zafarmand
 */
 
 "use strict";
-
 setInterval(hide, 500);
-
 
 function hide(){
   $(`.revealed`).each(attemptCover);
