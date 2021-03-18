@@ -1,5 +1,4 @@
 
-
 #secret-document{
   font-family:Garamond, serif;
   font-size:1.77rem;
@@ -16,7 +15,7 @@
 }
 
 .revealed{
-color:red;
+  color:red;
 }
 
 #image{
@@ -28,4 +27,12 @@ color:red;
   position: absolute;
   left:2200px;
   top:50px;
+}
+
+#button{
+  font-size: 20px;
+}
+
+#message-input{
+  width: 100%;
 }
