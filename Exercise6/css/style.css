@@ -6,10 +6,11 @@
 }
 
 .redacted{
-  background-color: black;
+  color:black;
+  background-color: red;
   user-select:none;
 }
 
 .revealed{
-  color: red;
+color:red;
 }

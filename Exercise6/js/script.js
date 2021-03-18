@@ -6,22 +6,18 @@ Shirin Zafarmand
 */
 
 "use strict";
-$(`.top-secret`).on(`click`, redact);
-setInterval(revelation, 500);
 
-function redact(event){
-  $(this).addClass(`redacted`);
-  $(this).removeClass(`revealed`);
+setInterval(hide, 500);
+
+
+function hide(){
+  $(`.revealed`).each(attemptCover);
 }
 
-function revelation(){
-  $(`.redacted`).each(attemptReveal);
-}
-
-function attemptReveal(){
+function attemptCover(){
   let r= Math.random();
-  if(r<0.1){
-    $(this).removeClass(`redacted`);
-    $(this).addClass(`revealed`);
+  if(r<0.8){
+    $(this).removeClass(`releaved`);
+    $(this).addClass(`redacted`);
   }
 }
