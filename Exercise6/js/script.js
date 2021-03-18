@@ -16,7 +16,7 @@ function hide(){
 
 function attemptCover(){
   let r= Math.random();
-  if(r<0.8){
+  if(r<0.06){
     $(this).removeClass(`releaved`);
     $(this).addClass(`redacted`);
   }
