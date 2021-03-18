@@ -4,9 +4,13 @@ Shirin Zafarmand
 
 
 */
-let notif=`Your Secret Message Has Been Sent to The Agent`
+
 "use strict";
+
+let correctNotif=`Your Secret Message Has Been Sent to The Agent`;
+let wrongNotif=`You Have Entered the Wrong Message. Your Identity Is Exposed, Give Up to The Police`;
 let hiddenMessage= `red code exit the buildin`;
+
 setInterval(hide, 500);
 
 function hide(){
@@ -25,5 +29,8 @@ $(`#button`).on(`click`, function(event){
   let input= $(`#message-input`).val();
   if(input === hiddenMessage){
     alert(notif);
+  }
+  else{
+    alert(wrongNotif);
   }
 })
