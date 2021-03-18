@@ -4,8 +4,9 @@ Shirin Zafarmand
 
 
 */
-
+let notif=`Your Secret Message Has Been Sent to The Agent`
 "use strict";
+let hiddenMessage= `red code exit the buildin`;
 setInterval(hide, 500);
 
 function hide(){
@@ -19,3 +20,10 @@ function attemptCover(){
     $(this).addClass(`redacted`);
   }
 }
+
+$(`#button`).on(`click`, function(event){
+  let input= $(`#message-input`).val();
+  if(input === hiddenMessage){
+    alert(notif);
+  }
+})
