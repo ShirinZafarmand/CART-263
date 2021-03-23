@@ -22,4 +22,14 @@ function setup() {
 function draw() {
   noStroke();
   background(0);
+  for (var i = 0; i <= count; i++) {
+    mods[i].draw();
+  }
+}
+
+
+function mousePressed() {
+  for (var i = 0; i <= count; i++) {
+    mods[i].pressed();
+  }
 }
