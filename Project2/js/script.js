@@ -7,7 +7,7 @@ shirin zafarmand
 **************************************************/
 var u;
 var count;
-var mods = [];
+var bars = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -17,19 +17,24 @@ function setup() {
   let widthExtra = windowWidth;
   //adjusting the lines based of the width
   count = int(widthExtra/u);
+  var index = 0;
+  //constructiong the bars
+ for (let i = 0; i < count*2; i++) {
+     bars[index++] = new Bars((int(i)*u),0);
+  }
 }
 
 function draw() {
   noStroke();
   background(0);
+  //drawing the bars
   for (var i = 0; i <= count; i++) {
-    mods[i].draw();
+    bars[i].draw();
   }
 }
 
-
 function mousePressed() {
   for (var i = 0; i <= count; i++) {
-    mods[i].pressed();
+    bars[i].pressed();
   }
 }

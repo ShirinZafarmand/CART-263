@@ -1,4 +1,4 @@
-class Module{
+class Bars{
 
   constructor(x,y){
     this.x = x;
@@ -17,11 +17,11 @@ class Module{
     let widthExtra;
     translate(this.x, this.y);
     noStroke();
-    fill(12);
+    fill(15,30,0);
     //using quad instead of rect to set slope for the bars
-    quad(this.j,0,this.j+this.tan,0,this.j+this.tan/2,height,this.j,height);
+    quad(this.j,0,this.j+this.tan,0,this.j+25,height,this.j,height);
     //slowly increasing the slope
-    this.tan=this.tan+0.01;
+    this.tan=this.tan+0.1;
     //the movement speed for the bars
     this.x = this.x + this.speed;
     if(this.x > widthExtra){
