@@ -17,18 +17,19 @@ class Horizontalbars{
     let widthExtra;
     translate(this.x, this.y);
     noStroke();
-    fill(5,30,40);
+    fill(29);
     //using quad instead of rect to set slope for the bars
-    rect(this.j,this.j+this.tan,width/2,25)
+    rect(500,300,50,25)
     //slowly increasing the slope
     this.tan=this.tan+0.01;
     //the movement speed for the bars
-    this.y = this.y + this.speed;
-    if(this.y > widthExtra){
-      this.y = -u;
+    this.y = this.y - this.speed;
+    this.x = this.x + this.speed;
+    if(this.x > widthExtra){
+      this.x = -u;
     }
-    if(this.y < -u){
-      this.y = widthExtra;
+    if(this.x < -u){
+      this.x = widthExtra;
     }
     pop();
   }

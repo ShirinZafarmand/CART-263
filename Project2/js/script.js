@@ -10,6 +10,13 @@ var count;
 var verticalBars = [];
 var horizontalBars =[];
 
+let ball={
+  x:200,
+  y:0,
+  size:50,
+  movement:5
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   //number of vertical lines
@@ -23,7 +30,6 @@ function setup() {
   //constructiong the vertical bars
  for (let i = 0; i < count*2; i++) {
      verticalBars[index1++] = new Verticalbars((int(i)*u),0);
-     horizontalBars[index2++] = new Horizontalbars((int(i)*u),0);
   }
 }
 
@@ -33,8 +39,23 @@ function draw() {
   //drawing the bars
   for (var i = 0; i <= count; i++) {
     verticalBars[i].draw();
-    horizontalBars[i].draw();
   }
+
+  //if the ball is still within the screen height
+  if(ball.y<height){
+    fill(200,0,0);
+    //drawing the ball
+    ellipse(ball.x,ball.y,ball.size);
+    //moving the ball
+    ball.y=ball.y+ball.movement;
+  }
+  //if the ball has left the screen reapear at a random y
+  if(ball.y>=height){
+    ball.x=random(0,width);
+    ball.y=0;
+    ball.y=ball.y+ball.movement;
+  }
+
 }
 
 function mousePressed() {
