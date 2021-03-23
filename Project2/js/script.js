@@ -5,9 +5,9 @@ Project2- Prototype
 shirin zafarmand
 
 **************************************************/
-
 var u;
 var count;
+var mods = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -17,12 +17,9 @@ function setup() {
   let widthExtra = windowWidth;
   //adjusting the lines based of the width
   count = int(widthExtra/u);
-
-
 }
 
 function draw() {
- noStroke();
- background(0);
-
+  noStroke();
+  background(0);
 }
