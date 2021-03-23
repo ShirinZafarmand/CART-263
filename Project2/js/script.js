@@ -7,20 +7,23 @@ shirin zafarmand
 **************************************************/
 var u;
 var count;
-var bars = [];
+var verticalBars = [];
+var horizontalBars =[];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   //number of vertical lines
   u = 100;
-  //overall width of the lines
+  //overall width of the vertical lines
   let widthExtra = windowWidth;
-  //adjusting the lines based of the width
+  //adjusting the vertical lines based of the width
   count = int(widthExtra/u);
-  var index = 0;
-  //constructiong the bars
+  var index1 = 0;
+  var index2 =0;
+  //constructiong the vertical bars
  for (let i = 0; i < count*2; i++) {
-     bars[index++] = new Verticalbars((int(i)*u),0);
+     verticalBars[index1++] = new Verticalbars((int(i)*u),0);
+     horizontalBars[index2++] = new Horizontalbars((int(i)*u),0);
   }
 }
 
@@ -29,12 +32,13 @@ function draw() {
   background(0);
   //drawing the bars
   for (var i = 0; i <= count; i++) {
-    bars[i].draw();
+    verticalBars[i].draw();
+    horizontalBars[i].draw();
   }
 }
 
 function mousePressed() {
   for (var i = 0; i <= count; i++) {
-    bars[i].pressed();
+    verticalBars[i].pressed();
   }
 }
