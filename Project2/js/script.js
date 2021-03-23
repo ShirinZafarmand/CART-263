@@ -6,9 +6,12 @@ shirin zafarmand
 
 **************************************************/
 var u;
-var count;
+var u2;
+var count1;
+var count2;
 var verticalBars = [];
 var horizontalBars =[];
+var gates =[];
 
 let ball={
   x:200,
@@ -21,18 +24,25 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   //number of vertical lines
   u = 100;
+  u2 =19;
   //overall width of the vertical lines
   let widthExtra = windowWidth;
-  let heightExtra=windowHeight;
+  let heightExtra = windowHeight;
   //adjusting the vertical lines based of the width
-  count = int(widthExtra/u);
+  count1 = int(widthExtra/u);
+  count2 = int(heightExtra/u2);
   var index1 = 0;
-  var index2 =0;
+  var index2 = 0;
+  var index3 = 0;
   //constructiong the vertical and horizontal bars
- for (let i = 0; i < count*2; i++) {
-     verticalBars[index1++] = new Verticalbars((int(i)*u),0);
-     let x=random(0,width);
-     horizontalBars[index2++] = new Horizontalbars(x,(int(i)*u));
+ for (let i = 0; i < count1*2; i++) {
+    verticalBars[index1++] = new Verticalbars((int(i)*u),0);
+    let y= random(0,height)
+    gates[index3++] = new Gate((int(i)*u),y);
+  }
+ for (let j = 0; j< count2*2; j++){
+    let x=random(0,width);
+    horizontalBars[index2++] = new Horizontalbars(x,(int(j)*u2));
   }
 }
 
@@ -40,9 +50,12 @@ function draw() {
   noStroke();
   background(0);
   //drawing the bars
-  for (var i = 0; i <= count; i++) {
+  for (var i = 0; i <= count1; i++) {
     verticalBars[i].draw();
-    horizontalBars[i].draw();
+    gates[i].draw();
+  }
+  for (var j = 0; j <= count2; j++) {
+    horizontalBars[j].draw();
   }
 
   //if the ball is still within the screen height
@@ -62,8 +75,11 @@ function draw() {
 }
 
 function mousePressed() {
-  for (var i = 0; i <= count; i++) {
+  for (var i = 0; i <= count1; i++) {
     verticalBars[i].pressed();
-    horizontalBars[i].pressed();
+    gates[i].pressed();
+  }
+  for (var j = 0;j <= count2; j++) {
+    horizontalBars[j].pressed();
   }
 }
