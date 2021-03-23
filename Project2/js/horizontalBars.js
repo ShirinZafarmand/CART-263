@@ -14,22 +14,22 @@ class Horizontalbars{
 
   draw(){
     push();
-    let widthExtra;
+    let heightExtra;
     translate(this.x, this.y);
     noStroke();
-    fill(29);
+    fill(0);
     //using quad instead of rect to set slope for the bars
-    rect(500,300,50,25)
+    rect(this.j,this.j,50,25)
     //slowly increasing the slope
     this.tan=this.tan+0.01;
     //the movement speed for the bars
     this.y = this.y - this.speed;
-    this.x = this.x + this.speed;
-    if(this.x > widthExtra){
-      this.x = -u;
+
+    if(this.y > heightExtra){
+      this.y = -u;
     }
-    if(this.x < -u){
-      this.x = widthExtra;
+    if(this.y < -u){
+      this.y = heightExtra;
     }
     pop();
   }

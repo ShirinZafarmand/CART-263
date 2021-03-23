@@ -23,13 +23,15 @@ function setup() {
   u = 100;
   //overall width of the vertical lines
   let widthExtra = windowWidth;
+  let heightExtra=windowHeight;
   //adjusting the vertical lines based of the width
   count = int(widthExtra/u);
   var index1 = 0;
   var index2 =0;
-  //constructiong the vertical bars
+  //constructiong the vertical and horizontal bars
  for (let i = 0; i < count*2; i++) {
      verticalBars[index1++] = new Verticalbars((int(i)*u),0);
+     horizontalBars[index2++] = new Horizontalbars(0,(int(i)*u));
   }
 }
 
@@ -39,6 +41,7 @@ function draw() {
   //drawing the bars
   for (var i = 0; i <= count; i++) {
     verticalBars[i].draw();
+    horizontalBars[i].draw();
   }
 
   //if the ball is still within the screen height
@@ -55,7 +58,6 @@ function draw() {
     ball.y=0;
     ball.y=ball.y+ball.movement;
   }
-
 }
 
 function mousePressed() {
