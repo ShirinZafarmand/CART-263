@@ -1,4 +1,4 @@
-class Bars{
+class Verticalbars{
 
   constructor(x,y){
     this.x = x;
@@ -21,7 +21,7 @@ class Bars{
     //using quad instead of rect to set slope for the bars
     quad(this.j,0,this.j+this.tan,0,this.j+25,height,this.j,height);
     //slowly increasing the slope
-    this.tan=this.tan+0.1;
+    this.tan=this.tan+0.01;
     //the movement speed for the bars
     this.x = this.x + this.speed;
     if(this.x > widthExtra){

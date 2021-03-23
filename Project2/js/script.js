@@ -20,7 +20,7 @@ function setup() {
   var index = 0;
   //constructiong the bars
  for (let i = 0; i < count*2; i++) {
-     bars[index++] = new Bars((int(i)*u),0);
+     bars[index++] = new Verticalbars((int(i)*u),0);
   }
 }
 
