@@ -17,14 +17,14 @@ class Horizontalbars{
     let heightExtra;
     translate(this.x, this.y);
     noStroke();
-    fill(0);
+    fill(15,30,0);
     //using quad instead of rect to set slope for the bars
-    rect(this.j,this.j,50,25)
+    rect(this.j,this.j,100,25)
     //slowly increasing the slope
     this.tan=this.tan+0.01;
     //the movement speed for the bars
-    this.y = this.y - this.speed;
-
+    this.y = this.y - 1;
+    this.x = this.x + this.speed;
     if(this.y > heightExtra){
       this.y = -u;
     }
@@ -32,5 +32,16 @@ class Horizontalbars{
       this.y = heightExtra;
     }
     pop();
+  }
+
+  pressed(){
+    //if the mouse is pressed change the direction of movement
+    if (this.forward === true){
+      this.speed = this.speed*-1;
+      this.forward = false;
+    } else {
+      this.speed = this.speed*-1;
+      this.forward = true;
+    }
   }
 }

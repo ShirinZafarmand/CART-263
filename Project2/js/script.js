@@ -14,7 +14,7 @@ let ball={
   x:200,
   y:0,
   size:50,
-  movement:5
+  movement:1
 }
 
 function setup() {
@@ -31,7 +31,8 @@ function setup() {
   //constructiong the vertical and horizontal bars
  for (let i = 0; i < count*2; i++) {
      verticalBars[index1++] = new Verticalbars((int(i)*u),0);
-     horizontalBars[index2++] = new Horizontalbars(0,(int(i)*u));
+     let x=random(0,width);
+     horizontalBars[index2++] = new Horizontalbars(x,(int(i)*u));
   }
 }
 
@@ -63,5 +64,6 @@ function draw() {
 function mousePressed() {
   for (var i = 0; i <= count; i++) {
     verticalBars[i].pressed();
+    horizontalBars[i].pressed();
   }
 }
