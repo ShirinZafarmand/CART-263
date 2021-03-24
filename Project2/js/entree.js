@@ -1,5 +1,5 @@
 class Entree{
-//the entrees follow the same direction and movements of the vertical bars
+  //the entrees follow the same direction and movements of the vertical bars
 
   constructor(x,y){
     this.x = x;

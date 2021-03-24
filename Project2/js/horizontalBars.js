@@ -4,8 +4,6 @@ class Horizontalbars{
     this.x = x;
     this.y =y;
     this.j = 0;
-    //the space between the bars
-    this.space=25;
     //movement speed for the bars
     this.speed = 1;
     this.forward = true;
@@ -17,10 +15,8 @@ class Horizontalbars{
     translate(this.x, this.y);
     noStroke();
     fill(15,30,0);
-    //using quad instead of rect to set slope for the bars
+    //displaying the horizontal bars
     rect(this.j,this.j,100,25)
-    //slowly adding a slope
-    this.space=this.space+0.01;
     //the movement speed for the bars
     this.y = this.y - 1;
     this.x = this.x + this.speed;

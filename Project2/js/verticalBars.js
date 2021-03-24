@@ -20,6 +20,7 @@ class Verticalbars{
     quad(this.j,0,this.j+this.space,0,this.j+25,height,this.j,height);
     //slowly adding a slope
     this.space=this.space+0.01;
+    this.space=constrain(this.space,25,50)
     //the movement speed for the bars
     this.x = this.x + this.speed;
     pop();

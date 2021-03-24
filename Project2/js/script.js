@@ -3,7 +3,6 @@
 /**************************************************
 Project2- Prototype
 shirin zafarmand
-
 **************************************************/
 var u;
 var u2;
@@ -34,13 +33,13 @@ function setup() {
   var index2 = 0;
   var index3 = 0;
   //constructiong the vertical and the entrees
- for (let i = 0; i < count1*2; i++) {
+  for (let i = 0; i < count1*2; i++) {
     verticalBars[index1++] = new Verticalbars((int(i)*u),0);
     let y= random(0,height)
     entrees[index3++] = new Entree((int(i)*u),y);
   }
- //constructiong the horizontal bars
- for (let j = 0; j< count2*2; j++){
+  //constructiong the horizontal bars
+  for (let j = 0; j< count2*2; j++){
     let x=random(0,width);
     horizontalBars[index2++] = new Horizontalbars(x,(int(j)*u2));
   }
