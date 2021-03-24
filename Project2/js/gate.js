@@ -6,7 +6,7 @@ class Gate{
     //
     this.j = 0;
     //the space between the bars
-    this.tan=30;
+    this.tan=50;
     //movement speed for the bars
     this.speed = 1;
     this.forward = true;

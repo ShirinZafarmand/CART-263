@@ -14,7 +14,7 @@ var horizontalBars =[];
 var gates =[];
 
 let ball={
-  x:200,
+  x:600,
   y:0,
   size:50,
   movement:1
