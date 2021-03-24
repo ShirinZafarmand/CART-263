@@ -1,13 +1,13 @@
-class Gate{
+class Entree{
+//the entrees follow the same direction and movements of the vertical bars
 
   constructor(x,y){
     this.x = x;
     this.y =y;
-    //
     this.j = 0;
-    //the space between the bars
-    this.tan=50;
-    //movement speed for the bars
+    //the space between the entrees
+    this.space=50;
+    //movement speed for the entrees
     this.speed = 1;
     this.forward = true;
   }
@@ -18,16 +18,10 @@ class Gate{
     translate(this.x, this.y);
     noStroke();
     fill(0);
-    //using quad instead of rect to set slope for the bars
-    quad(this.j,0,this.j+this.tan,0,this.j+this.tan,100,this.j,100);
-    //the movement speed for the bars
+    //drwaing the entrees
+    quad(this.j,0,this.j+this.space,0,this.j+this.space,2*this.space,this.j,2*this.space);
+    //the movement speed
     this.x = this.x + this.speed;
-    if(this.x > widthExtra){
-      this.x = -u;
-    }
-    if(this.x < -u){
-      this.x = widthExtra;
-    }
     pop();
   }
 

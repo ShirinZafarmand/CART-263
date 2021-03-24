@@ -3,10 +3,9 @@ class Verticalbars{
   constructor(x,y){
     this.x = x;
     this.y =y;
-    //
     this.j = 0;
     //the space between the bars
-    this.tan=25;
+    this.space=25;
     //movement speed for the bars
     this.speed = 1;
     this.forward = true;
@@ -18,18 +17,11 @@ class Verticalbars{
     translate(this.x, this.y);
     noStroke();
     fill(15,30,0);
-    //using quad instead of rect to set slope for the bars
-    quad(this.j,0,this.j+this.tan,0,this.j+25,height,this.j,height);
-    //slowly increasing the slope
-    this.tan=this.tan+0.01;
+    quad(this.j,0,this.j+this.space,0,this.j+25,height,this.j,height);
+    //slowly adding a slope
+    this.space=this.space+0.01;
     //the movement speed for the bars
     this.x = this.x + this.speed;
-    if(this.x > widthExtra){
-      this.x = -u;
-    }
-    if(this.x < -u){
-      this.x = widthExtra;
-    }
     pop();
   }
 

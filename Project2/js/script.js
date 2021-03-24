@@ -11,7 +11,7 @@ var count1;
 var count2;
 var verticalBars = [];
 var horizontalBars =[];
-var gates =[];
+var entrees =[];
 
 let ball={
   x:600,
@@ -22,24 +22,24 @@ let ball={
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  //number of vertical lines
   u = 100;
-  u2 =19;
-  //overall width of the vertical lines
+  u2 =20;
+  //overall width and height of the screen
   let widthExtra = windowWidth;
   let heightExtra = windowHeight;
-  //adjusting the vertical lines based of the width
+  //adjusting the number of vertical and horizontal bars based of the width and height os screen
   count1 = int(widthExtra/u);
   count2 = int(heightExtra/u2);
   var index1 = 0;
   var index2 = 0;
   var index3 = 0;
-  //constructiong the vertical and horizontal bars
+  //constructiong the vertical and the entrees
  for (let i = 0; i < count1*2; i++) {
     verticalBars[index1++] = new Verticalbars((int(i)*u),0);
     let y= random(0,height)
-    gates[index3++] = new Gate((int(i)*u),y);
+    entrees[index3++] = new Entree((int(i)*u),y);
   }
+ //constructiong the horizontal bars
  for (let j = 0; j< count2*2; j++){
     let x=random(0,width);
     horizontalBars[index2++] = new Horizontalbars(x,(int(j)*u2));
@@ -49,11 +49,12 @@ function setup() {
 function draw() {
   noStroke();
   background(0);
-  //drawing the bars
+  //drawing the vertical bars and entrees
   for (var i = 0; i <= count1; i++) {
     verticalBars[i].draw();
-    gates[i].draw();
+    entrees[i].draw();
   }
+  //drawing the horizontal bars
   for (var j = 0; j <= count2; j++) {
     horizontalBars[j].draw();
   }
@@ -77,7 +78,7 @@ function draw() {
 function mousePressed() {
   for (var i = 0; i <= count1; i++) {
     verticalBars[i].pressed();
-    gates[i].pressed();
+    entrees[i].pressed();
   }
   for (var j = 0;j <= count2; j++) {
     horizontalBars[j].pressed();
