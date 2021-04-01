@@ -32,13 +32,17 @@ class Play extends Phaser.Scene{
     this.physics.add.collider(this.poo, this.poo);
 
     this.cursors= this.input.keyboard.createCursorKeys();
+
+    this.sound.add('coin');
+
   }
 
+
+
   reveal(){
-    //let x= Math.random() * this.sys.canvas.width;
-    //let y= Math.random() * this.sys.canvas.height;
     this.goldenPoo.destroy();
     this.funeralUrn=this.physics.add.sprite(this.hiddenPositionX,this.hiddenPositionY, `funeral-urn`);
+    this.sound.play('coin');
   }
 
 
