@@ -7,53 +7,58 @@ class Play extends Phaser.Scene{
   }
 
   create(){
-    this.avatar=this.physics.add.sprite(400,300, `avatar`);
-    this.avatar.setCollideWorldBounds(true);
+    this.player=this.physics.add.sprite(400,300, `player`);
+    this.player.setCollideWorldBounds(true);
 
     let x = Math.random() * this.sys.canvas.width;
     let y = Math.random() * this.sys.canvas.height;
-    this.sadness = this.physics.add.sprite( x, y, `funeral-urn`);
+    this.goldenPoo = this.physics.add.sprite( x, y, `golden-poo`);
+    this.hiddenPositionX=x;
+    this.hiddenPositionY=y
 
-    this.happiness=this.physics.add.group({
+    this.poo=this.physics.add.group({
       key: `poo`,
-      quantity: 20,
+      quantity: 1,
       bounceX: 0.5,
       bounceY: 0.5,
       collideWorldBounds: true,
       dragX: 50,
       dragY: 50
     });
-    Phaser.Actions.RandomRectangle(this.happiness.getChildren(), this.physics.world.bounds);
+    Phaser.Actions.RandomRectangle(this.poo.getChildren(), this.physics.world.bounds);
 
-    this.physics.add.overlap(this.avatar, this.sadness, this.getSad, null, this);
-    this.physics.add.collider(this.avatar, this.happiness);
-    this.physics.add.collider(this.happiness, this.happiness);
+    this.physics.add.overlap(this.player, this.goldenPoo, this.reveal, null, this);
+    this.physics.add.collider(this.player, this.poo);
+    this.physics.add.collider(this.poo, this.poo);
 
     this.cursors= this.input.keyboard.createCursorKeys();
   }
 
-  getSad(avatar, sadness){
-    let x= Math.random() * this.sys.canvas.width;
-    let y= Math.random() * this.sys.canvas.height;
-    this.sadness.setPosition(x, y);
+  reveal(){
+    //let x= Math.random() * this.sys.canvas.width;
+    //let y= Math.random() * this.sys.canvas.height;
+    this.goldenPoo.destroy();
+    this.funeralUrn=this.physics.add.sprite(this.hiddenPositionX,this.hiddenPositionY, `funeral-urn`);
   }
+
+
 
   update(){
     if(this.cursors.left.isDown){
-      this.avatar.setAngularVelocity(-150);
+      this.player.setAngularVelocity(-150);
     }
     else if(this.cursors.right.isDown){
-      this.avatar.setAngularVelocity(150);
+      this.player.setAngularVelocity(150);
     }
     else{
-      this.avatar.setAngularVelocity(0);
+      this.player.setAngularVelocity(0);
     }
 
     if(this.cursors.up.isDown){
-      this.physics.velocityFromRotation(this.avatar.rotation,200, this.avatar.body.acceleration);
+      this.physics.velocityFromRotation(this.player.rotation,200, this.player.body.acceleration);
     }
     else{
-      this.avatar.setAcceleration(0);
+      this.player.setAcceleration(0);
     }
   }
 }

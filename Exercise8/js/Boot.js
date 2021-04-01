@@ -8,9 +8,10 @@ class Boot extends Phaser.Scene{
 
   preload(){
     //load assets
-    this.load.image(`avatar`, `assets/images/avatar.png`);
+    this.load.image(`player`, `assets/images/avatar.png`);
     this.load.image(`funeral-urn`, `assets/images/funeral-urn.png`);
     this.load.image(`poo`, `assets/images/poo.png`);
+    this.load.image(`golden-poo`, `assets/images/golden-poo.png`);
 
     this.load.on(`complete`, () => {
       this.scene.start(`play`);
