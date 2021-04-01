@@ -12,10 +12,10 @@ class Play extends Phaser.Scene{
 
     let x = Math.random() * this.sys.canvas.width;
     let y = Math.random() * this.sys.canvas.height;
-    this.sadness = this.physics.add.sprite( x, y, `thumbs-down`);
+    this.sadness = this.physics.add.sprite( x, y, `funeral-urn`);
 
     this.happiness=this.physics.add.group({
-      key: `thumbs-up`,
+      key: `poo`,
       quantity: 20,
       bounceX: 0.5,
       bounceY: 0.5,
