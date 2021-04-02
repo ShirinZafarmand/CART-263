@@ -17,6 +17,8 @@ class Play extends Phaser.Scene{
     let y = Math.random() * this.sys.canvas.height;
     //displaying the golden poo
     this.goldenPoo = this.physics.add.sprite( x, y, `golden-poo`);
+    this.goldenPoo.setBounce(1);
+    this.goldenPoo.setVelocity(150);
     //saving the random position of the golden poo
     this.hiddenPositionX=x;
     this.hiddenPositionY=y
@@ -33,9 +35,10 @@ class Play extends Phaser.Scene{
     });
     //constraining the pile of poos' position within the screen
     Phaser.Actions.RandomRectangle(this.poo.getChildren(), this.physics.world.bounds);
-
     // when the player overlaps the golden poo the revealing starts
     this.physics.add.overlap(this.player, this.goldenPoo, this.reveal, null, this);
+    this.goldenPoo.setCollideWorldBounds(true);
+    
     //colliding between the pile of poos and the player
     this.physics.add.collider(this.player, this.poo);
     //colliding between the pile of poos
@@ -55,7 +58,7 @@ class Play extends Phaser.Scene{
     //playin the coin sound effect
     this.sound.play('coin');
   }
-  
+
 
   //moving the player with arrow keys
   update(){
