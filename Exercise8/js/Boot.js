@@ -9,7 +9,7 @@ class Boot extends Phaser.Scene{
   preload(){
     //load assets
     //the player
-    this.load.image(`player`, `assets/images/avatar.png`);
+    this.load.image(`player`, `assets/images/magnifying-glass.png`);
     //the golden urn
     this.load.image(`funeral-urn`, `assets/images/funeral-urn.png`);
     //the poo
@@ -19,7 +19,7 @@ class Boot extends Phaser.Scene{
 
     //load coin sound effect
     this.load.audio('coin', 'assets/sounds/coin.wav');
-    
+
     //start the scene when all is loaded
     this.load.on(`complete`, () => {
       this.scene.start(`play`);
