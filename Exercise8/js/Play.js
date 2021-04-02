@@ -38,12 +38,12 @@ class Play extends Phaser.Scene{
     // when the player overlaps the golden poo the revealing starts
     this.physics.add.overlap(this.player, this.goldenPoo, this.reveal, null, this);
     this.goldenPoo.setCollideWorldBounds(true);
-    
+
     //colliding between the pile of poos and the player
     this.physics.add.collider(this.player, this.poo);
     //colliding between the pile of poos
     this.physics.add.collider(this.poo, this.poo);
-
+this.physics.add.collider(this.goldenPoo, this.poo);
     this.cursors= this.input.keyboard.createCursorKeys();
 
     //adding the coin sound effect to the scene
