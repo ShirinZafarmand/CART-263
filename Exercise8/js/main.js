@@ -1,6 +1,8 @@
 /**
 Desperately Seeking Sadness++
 Shirin Zafarmand
+in this game there is a funeral urn hidden inside one of the semmingly piles of poo. at the begining the golden poo which hides the funeral urn moves for a second. the
+user needs to find the funeral urn ehich was moving among ather piles.
 */
 
 "use strict";
