@@ -18,7 +18,7 @@ class Play extends Phaser.Scene{
 
     this.poo=this.physics.add.group({
       key: `poo`,
-      quantity: 1,
+      quantity: 100,
       bounceX: 0.5,
       bounceY: 0.5,
       collideWorldBounds: true,
@@ -34,17 +34,13 @@ class Play extends Phaser.Scene{
     this.cursors= this.input.keyboard.createCursorKeys();
 
     this.sound.add('coin');
-
   }
-
-
 
   reveal(){
     this.goldenPoo.destroy();
     this.funeralUrn=this.physics.add.sprite(this.hiddenPositionX,this.hiddenPositionY, `funeral-urn`);
     this.sound.play('coin');
   }
-
 
 
   update(){
