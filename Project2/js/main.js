@@ -9,7 +9,7 @@ user needs to find the funeral urn ehich was moving among ather piles.
 
 let config={
   type:Phaser.AUTO,
-  width: 800,
+  width: 1000,
   height:600,
   physics:{
     default:`arcade`
