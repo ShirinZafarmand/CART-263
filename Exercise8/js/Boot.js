@@ -15,7 +15,7 @@ class Boot extends Phaser.Scene{
     //the poo
     this.load.image(`poo`, `assets/images/poo.png`);
     //the special poo
-    this.load.image(`golden-poo`, `assets/images/golden-poo.png`);
+    this.load.image(`rectan`, `assets/images/golden-poo.png`);
 
     //load coin sound effect
     this.load.audio('coin', 'assets/sounds/coin.wav');

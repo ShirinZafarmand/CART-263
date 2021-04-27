@@ -7,14 +7,14 @@ class Play extends Phaser.Scene{
   }
 
   create(){
-    this.cameras.main.backgroundColor.setTo(255,255,255);
+   this.cameras.main.backgroundColor.setTo(255,255,255);
     //  Our dynamic TileSprite that will bounce around
    this.block = this.physics.add.sprite( 450, 100, `golden-poo`);
    this.physics.add.existing(this.block, false);
 
-   this.block.body.setVelocity(130, 180);
-   this.block.body.setBounce(1, 1);
-   this.block.body.setCollideWorldBounds(true);
+   this.block.setVelocity(130, 180);
+   this.block.setBounce(1, 1);
+   this.block.setCollideWorldBounds(true);
 
 
    //  Our static TileSprite that will just receive collide events
@@ -29,15 +29,15 @@ class Play extends Phaser.Scene{
    this.physics.add.collider(this.block, this.bamboo1);
    this.physics.add.collider(this.block, this.bamboo2);
   this.color = 0xff5878
-  this.rectan = this.add.rectangle(500, 400, 60, 60, this.color);
+  this.rectan = this.physics.add.sprite( 400, 300, `rectan`);
+  
+  this.physics.add.overlap( this.block, this.rectan, this.exit, null, this);
 
-  this.physics.add.collider( this.block, this.rectan, this.exit);
-  this.sound.add('coin');
 }
 
 exit(){
   //when the player overlays the golden poo, the image o golden poo disapears
-this.sound.play('coin');
+   this.cameras.main.backgroundColor.setTo(100,100,100);
 }
 
   //moving the player with arrow keys
