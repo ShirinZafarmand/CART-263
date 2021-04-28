@@ -10,6 +10,7 @@ class Entree{
     //movement speed for the entrees
     this.speed = 1;
     this.forward = true;
+    this.color=0;
   }
 
   draw(){
@@ -17,10 +18,11 @@ class Entree{
     let widthExtra;
     translate(this.x, this.y);
     noStroke();
-    fill(0);
+    fill(this.color);
     //drwaing the entrees
     quad(this.j,0,this.j+this.space,0,this.j+this.space,2*this.space,this.j,2*this.space);
 
     pop();
   }
+
 }

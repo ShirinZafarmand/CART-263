@@ -57,6 +57,7 @@ function draw() {
   //drawing the horizontal bars
   for (var j = 0; j <= count2; j++) {
     horizontalBars[j].draw();
+    horizontalBars[j].interaction();
   }
 
   //if the ball is still within the screen height
@@ -77,5 +78,5 @@ function draw() {
 }
 
 function mousePressed() {
-ball.movement1= -ball.movement1
+    ball.movement1= -ball.movement1
 }

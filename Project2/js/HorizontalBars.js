@@ -16,6 +16,7 @@ class Horizontalbars{
     noStroke();
     fill(15,30,0);
     //displaying the horizontal bars
+    rectMode(CENTER);
     rect(this.j,this.j,100,25)
     //the movement speed for the bars
     this.y = this.y - 1;
@@ -32,6 +33,16 @@ class Horizontalbars{
     } else {
       this.speed = this.speed*-1;
       this.forward = true;
+    }
+  }
+
+  interaction(){
+    let d= dist(ball.x,ball.y, this.x,this.y)
+    if(d<=40){
+      ball.movement= -ball.movement;
+      ball.y=ball.y+ball.movement;
+      ball.movement1=0;
+
     }
   }
 }
