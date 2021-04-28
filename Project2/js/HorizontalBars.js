@@ -21,7 +21,9 @@ class Horizontalbars{
     //the movement speed for the bars
     this.y = this.y - 1;
 
-
+    if(this.y<=0){
+      this.y=2000
+    }
     pop();
   }
 
