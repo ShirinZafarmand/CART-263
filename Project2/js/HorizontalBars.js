@@ -39,7 +39,7 @@ class Horizontalbars{
   interaction(){
     let d= dist(ball.x,ball.y, this.x,this.y)
     if(d<=40){
-      ball.movement= -ball.movement;
+      ball.movement= -1;
       ball.y=ball.y+ball.movement;
       ball.movement1=0;
 

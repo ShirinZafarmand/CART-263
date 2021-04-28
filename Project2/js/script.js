@@ -53,6 +53,7 @@ function draw() {
   for (var i = 0; i <= count1; i++) {
     verticalBars[i].draw();
     entrees[i].draw();
+    entrees[i].keyPressed();
   }
   //drawing the horizontal bars
   for (var j = 0; j <= count2; j++) {
@@ -75,8 +76,9 @@ function draw() {
     ball.y=0;
     ball.y=ball.y+ball.movement;
   }
+
 }
 
 function mousePressed() {
-    ball.movement1= -ball.movement1
+  ball.movement1= -ball.movement1
 }
