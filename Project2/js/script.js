@@ -13,10 +13,10 @@ var horizontalBars =[];
 var entrees =[];
 
 let note1={
-  x: 200,
+  x: 160,
   y: 0,
   width:100,
-  height:200
+  height:50
 }
 
 
@@ -31,8 +31,8 @@ let ball={
 function setup() {
   let cnv=createCanvas(windowWidth/1.5, windowHeight/1.5);
   var x = (windowWidth - width) / 2;
-var y = (windowHeight - height) / 2;
-cnv.position(x, y);
+  var y = (windowHeight - height) / 2;
+  cnv.position(x, y);
 
   u = 100;
   u2 =20;
@@ -61,6 +61,14 @@ cnv.position(x, y);
 function draw() {
   noStroke();
   background(0);
+
+  push();
+  fill(100,30,50);
+  rectMode(CENTER);
+  note1.y= height;
+  rect(note1.x,note1.y, note1.width, note1.height)
+  pop();
+  
   //drawing the vertical bars and entrees
   for (var i = 0; i <= count1; i++) {
     verticalBars[i].draw();
@@ -88,12 +96,6 @@ function draw() {
     ball.y=0;
     ball.y=ball.y+ball.movement;
   }
-
-push();
-fill(100,30,50);
-note1.y= height/2;
-rect(note1.x,note1.y, note1.width, note1.height)
-pop();
 }
 
 function mousePressed() {
