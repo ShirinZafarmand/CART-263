@@ -77,11 +77,5 @@ function draw() {
 }
 
 function mousePressed() {
-  for (var i = 0; i <= count1; i++) {
-    verticalBars[i].pressed();
-    entrees[i].pressed();
-  }
-  for (var j = 0;j <= count2; j++) {
-    horizontalBars[j].pressed();
-  }
+ball.movement1= -ball.movement1
 }
