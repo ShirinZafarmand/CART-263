@@ -11,13 +11,8 @@ var count2;
 var verticalBars = [];
 var horizontalBars =[];
 var entrees =[];
-
-let note1={
-  x: 160,
-  y: 0,
-  width:100,
-  height:50
-}
+let notes=[];
+let numNotes=20;
 
 
 let ball={
@@ -56,19 +51,25 @@ function setup() {
     let x=random(0,width);
     horizontalBars[index2++] = new Horizontalbars(x,(int(j)*u2));
   }
+
+  for( let e =0; e <numNotes; e++){
+    let x=random(0,width);
+    let y= random(0,height);
+    let note = new Note(x,y);
+    notes.push(note);
+  }
 }
+
 
 function draw() {
   noStroke();
   background(0);
 
-  push();
-  fill(100,30,50);
-  rectMode(CENTER);
-  note1.y= height;
-  rect(note1.x,note1.y, note1.width, note1.height)
-  pop();
-  
+  for( let i=0; i<notes.length; i++){
+    let note=notes[i];
+note.draw();
+  };
+
   //drawing the vertical bars and entrees
   for (var i = 0; i <= count1; i++) {
     verticalBars[i].draw();
@@ -96,6 +97,7 @@ function draw() {
     ball.y=0;
     ball.y=ball.y+ball.movement;
   }
+
 }
 
 function mousePressed() {
