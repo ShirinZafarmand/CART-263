@@ -67,7 +67,8 @@ function draw() {
 
   for( let i=0; i<notes.length; i++){
     let note=notes[i];
-note.draw();
+    note.draw();
+    note.play();
   };
 
   //drawing the vertical bars and entrees
