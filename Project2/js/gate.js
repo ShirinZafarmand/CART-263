@@ -25,12 +25,17 @@ class Entree{
 
 
   }
-  
+
 
   keyPressed(){
     let d= dist(this.x, this.y, ball.x, ball.y)
     if(keyCode===37 && d<50){
       ball.x= ball.x-100;
+      ball.movement1=0.8
+      ball.movement=1
+    }
+    if(keyCode===39 && d<70){
+      ball.x= ball.x+100;
       ball.movement1=0.8
       ball.movement=1
     }

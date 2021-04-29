@@ -13,7 +13,7 @@ var horizontalBars =[];
 var entrees =[];
 let notes=[];
 let numNotes=20;
-
+let baseMelody;
 
 let ball={
   x:600,
@@ -22,6 +22,12 @@ let ball={
   movement:1,
   movement1:0.8
 }
+
+
+function preload() {
+  baseMelody=loadSound(`assets/sounds/melody.mp3`);
+}
+
 
 function setup() {
   let cnv=createCanvas(windowWidth/1.5, windowHeight/1.5);
@@ -64,6 +70,7 @@ function setup() {
 function draw() {
   noStroke();
   background(0);
+  baseMelody.play();
 
   for( let i=0; i<notes.length; i++){
     let note=notes[i];
