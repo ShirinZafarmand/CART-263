@@ -21,25 +21,18 @@ class Horizontalbars{
     //the movement speed for the bars
     this.y = this.y - 1;
 
+    //if the bar has left the screen reapear at a random y
     if(this.y<=-40){
       this.y=1700
     }
     pop();
   }
 
-  pressed(){
-    //if the mouse is pressed change the direction of movement
-    if (this.forward === true){
-      this.speed = this.speed*-1;
-      this.forward = false;
-    } else {
-      this.speed = this.speed*-1;
-      this.forward = true;
-    }
-  }
 
   interaction(){
+    //measure the distance between the blue ball(user) and the bars
     let d= dist(ball.x,ball.y, this.x,this.y)
+    //check if the blue ball is within the distance, the horizontal bars carry it  upwards
     if(d<=40){
       ball.movement= -1;
       ball.y=ball.y+ball.movement;
