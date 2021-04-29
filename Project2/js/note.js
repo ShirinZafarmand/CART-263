@@ -1,9 +1,10 @@
 class Note{
 
-  constructor(x,y){
+  constructor(x,y,m){
     this.x=x,
     this.y=y,
-    this.size=50
+    this.size=50,
+    this.playingNote=m
   }
 
   draw(){
@@ -13,14 +14,15 @@ class Note{
     pop();
   }
 
-  play(){
+  play(m){
     let d= dist(ball.x,ball.y, this.x,this.y)
     if(d<=40){
-      this.size=0
+      this.size=0;
+      for(let i=1; i<=1; i++){
+        this.playingNote.play();
+      }
+
     }
   }
 
-  melody(){
-    
-  }
 }

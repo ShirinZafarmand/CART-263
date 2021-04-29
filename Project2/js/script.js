@@ -16,6 +16,7 @@ let numNotes=20;
 let baseMelody;
 let state ='title';
 let audioButton;
+let singleNotes=[];
 
 let ball={
   x:600,
@@ -29,15 +30,25 @@ let ball={
 function preload() {
   baseMelody=loadSound(`assets/sounds/melody.mp3`);
   let one =loadSound(`assets/sounds/one.mp3`);
+  singleNotes.push(one);
   let two =loadSound(`assets/sounds/two.wav`);
+  singleNotes.push(two);
   let three =loadSound(`assets/sounds/three.wav`);
+  singleNotes.push(three);
   let four =loadSound(`assets/sounds/four.wav`);
+  singleNotes.push(four);
   let five =loadSound(`assets/sounds/five.wav`);
+  singleNotes.push(five);
   let six =loadSound(`assets/sounds/six.wav`);
+  singleNotes.push(six);
   let seven =loadSound(`assets/sounds/seven.wav`);
+  singleNotes.push(seven);
   let eight =loadSound(`assets/sounds/eight.wav`);
+  singleNotes.push(eight);
   let nine =loadSound(`assets/sounds/nine.wav`);
+  singleNotes.push(nine);
   let ten =loadSound(`assets/sounds/ten.wav`);
+  singleNotes.push(ten);
 }
 
 
@@ -76,7 +87,8 @@ function setup() {
   for( let e =0; e <numNotes; e++){
     let x=random(0,width);
     let y= random(0,height);
-    let note = new Note(x,y);
+    let m= random(singleNotes);
+    let note = new Note(x,y,m);
     notes.push(note);
   }
 }
@@ -135,6 +147,7 @@ function draw() {
       ball.y=0;
       ball.y=ball.y+ball.movement;
     }
+
   }
 }
 
