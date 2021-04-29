@@ -221,6 +221,7 @@ function mousePressed() {
   }
 }
 
+
 function keyPressed(){
   //if the space key is pressed play the notes
   if (keyCode===32){
@@ -229,14 +230,24 @@ function keyPressed(){
       note.play();
     }
   }
+
+  if (keyCode===13){
+    if(state==='title'){
+      state='start';}
+  }
+  else if(state===`one`){
+    state='start';
+  }
+  else if(state===`two`){
+    state='start';
+  }
+  else if(state===`three`){
+    state='start';
+  }
 }
 
 
 function audio(){
-  //playing background melody
-  if(state==='title'){
-    state='start';
     baseMelody.play();
     audioButton.hide();
-  };
 }
