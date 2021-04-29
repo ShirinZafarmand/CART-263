@@ -1,7 +1,7 @@
 "use strict";
 
 /**************************************************
-Project2
+Project2- Meditation Session with Fun
 shirin zafarmand
 **************************************************/
 var u;
@@ -65,24 +65,16 @@ function setup() {
   var y = (windowHeight - height) / 2;
   cnv.position(x, y);
 
-
-
-// create an audio in
+  // create an audio in
   mic = new p5.AudioIn();
-
   // users must manually enable their browser microphone for recording to work properly!
   mic.start();
-
   // create a sound recorder
   recorder = new p5.SoundRecorder();
-
   // connect the mic to the recorder
   recorder.setInput(mic);
-
   // create an empty sound file that we will use to playback the recording
   soundFile = new p5.SoundFile();
-
-
 
 
   textSize(32);
@@ -139,8 +131,12 @@ function draw() {
     audioButton.mousePressed(audio);
 
     //the description of the Game
-    fill(126);
-    text('description',width/2,height/2);
+    fill(100);
+    text('this game is the meditation break where you randomly add flute notes tothe background music',width/2,height/2);
+    text('by catching the small balls. click on the screen to change the movement of the blue ball and',width/2,height/2+40);
+    text('if you get stuck between the benches, wait till you reach the postern holes and the play with the arrow keys. ',width/2,height/2+80);
+    text('there is no winning or losing, just you having fun making a random melody',width/2,height/2+120);
+    text('when ready, click the button on the left corner!',width/2,height/2+160);
   }
 
   else if(state==='start'){
@@ -209,11 +205,12 @@ function mousePressed() {
 }  else if (state===`one`) {
     recorder.stop(); // stop recorder, and send the result to soundFile
 
-    background(100);
+    background(10);
     text('Recording stopped. Click to play & save', width/2,height/3);
 
     state=`two`;
 }  else if (state===`two`) {
+
     singleNotes.push(soundFile);
     state=`title`
   }

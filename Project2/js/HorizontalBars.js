@@ -17,7 +17,7 @@ class Horizontalbars{
     fill(14, 26, 10);
     //displaying the horizontal bars
     rectMode(CENTER);
-    rect(this.j,this.j,100,25)
+    rect(this.j,this.j,70,25)
     //the movement speed for the bars
     this.y = this.y - 1;
 
@@ -44,8 +44,6 @@ class Horizontalbars{
       ball.movement= -1;
       ball.y=ball.y+ball.movement;
       ball.movement1=0;
-
-
     }
   }
 }
