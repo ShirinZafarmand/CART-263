@@ -22,6 +22,7 @@ class Note{
     if(d<=40){
       this.size=0;
       for(let i=1; i<=1; i++){
+        this.playingNote.setVolume(1.2,10)
         this.playingNote.play();
       }
     }
