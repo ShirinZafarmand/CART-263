@@ -35,7 +35,7 @@ let ball={
 function preload() {
   //loading all the possible random notes
   baseMelody=loadSound(`assets/sounds/melody.mp3`);
-  let one =loadSound(`assets/sounds/one.mp3`);
+  let one =loadSound(`assets/sounds/one.wav`);
   singleNotes.push(one);
   let two =loadSound(`assets/sounds/two.wav`);
   singleNotes.push(two);
@@ -49,12 +49,12 @@ function preload() {
   singleNotes.push(six);
   let seven =loadSound(`assets/sounds/seven.wav`);
   singleNotes.push(seven);
-  let eight =loadSound(`assets/sounds/eight.wav`);
-  singleNotes.push(eight);
   let nine =loadSound(`assets/sounds/nine.wav`);
   singleNotes.push(nine);
   let ten =loadSound(`assets/sounds/ten.wav`);
   singleNotes.push(ten);
+  let eleven =loadSound(`assets/sounds/eleven.wav`);
+  singleNotes.push(eleven);
 
   //loading the background image
   bg = loadImage('assets/images/backgroundImage2.png');
