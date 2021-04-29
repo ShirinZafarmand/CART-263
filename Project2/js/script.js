@@ -232,23 +232,25 @@ function keyPressed(){
     }
   }
 
+  //shift the state to the start once the enter key is pressed
   if (keyCode===13){
     if(state==='title'){
       state='start';}
+    }
+    else if(state===`one`){
+      state='start';
+    }
+    else if(state===`two`){
+      state='start';
+    }
+    else if(state===`three`){
+      state='start';
+    }
   }
-  else if(state===`one`){
-    state='start';
-  }
-  else if(state===`two`){
-    state='start';
-  }
-  else if(state===`three`){
-    state='start';
-  }
-}
 
 
-function audio(){
+  function audio(){
+    //set a volume for the background melody
     baseMelody.setVolume(0.4);
     baseMelody.play();
-}
+  }

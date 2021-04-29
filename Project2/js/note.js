@@ -22,7 +22,9 @@ class Note{
     if(d<=40){
       this.size=0;
       for(let i=1; i<=1; i++){
-        this.playingNote.setVolume(1.2,10)
+        //set a volume and a fade in effect for the notes
+        this.playingNote.setVolume(1.2,15);
+        //play the note
         this.playingNote.play();
       }
     }
