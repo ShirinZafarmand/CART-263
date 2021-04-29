@@ -28,6 +28,16 @@ let ball={
 
 function preload() {
   baseMelody=loadSound(`assets/sounds/melody.mp3`);
+  let one =loadSound(`assets/sounds/one.mp3`);
+  let two =loadSound(`assets/sounds/two.wav`);
+  let three =loadSound(`assets/sounds/three.wav`);
+  let four =loadSound(`assets/sounds/four.wav`);
+  let five =loadSound(`assets/sounds/five.wav`);
+  let six =loadSound(`assets/sounds/six.wav`);
+  let seven =loadSound(`assets/sounds/seven.wav`);
+  let eight =loadSound(`assets/sounds/eight.wav`);
+  let nine =loadSound(`assets/sounds/nine.wav`);
+  let ten =loadSound(`assets/sounds/ten.wav`);
 }
 
 
@@ -138,5 +148,6 @@ function audio(){
     state='start';
     //playing background audio
     baseMelody.play();
+    audioButton.hide();
   };
 }

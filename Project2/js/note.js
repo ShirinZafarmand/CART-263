@@ -19,4 +19,8 @@ class Note{
       this.size=0
     }
   }
+
+  melody(){
+    
+  }
 }
