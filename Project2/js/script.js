@@ -65,12 +65,9 @@ function setup() {
   var y = (windowHeight - height) / 2;
   cnv.position(x, y);
 
-  textSize(32);
-  textAlign(CENTER,CENTER);
 
 
-
-  // create an audio in
+// create an audio in
   mic = new p5.AudioIn();
 
   // users must manually enable their browser microphone for recording to work properly!
@@ -88,9 +85,11 @@ function setup() {
 
 
 
+  textSize(32);
+  textAlign(CENTER,CENTER);
+
   u = 100;
   u2 =20;
-
   //overall width and height of the screen
   let widthExtra = windowWidth;
   let heightExtra = windowHeight;
@@ -134,35 +133,19 @@ function draw() {
     audioButton = createButton('Play The Game');
     audioButton.style('font-size','30px');
     audioButton.style('background-color', buttonColor);
-    let buttonX=(windowWidth - width) / 2;;
-    let buttonY=(windowHeight - height) / 2;
-    audioButton.position(buttonX,buttonY);
+    audioButton.position((windowWidth - width) / 2, (windowHeight - height) / 2);
 
     //if the button is pressed play the audio
     audioButton.mousePressed(audio);
 
-
-
-
-    //the description text of the game
-    fill(120);
+    //the description of the Game
+    fill(126);
     text('description',width/2,height/2);
   }
 
   else if(state==='start'){
     noStroke();
     background(bg);
-
-    let buttonColor = color(50);
-    audioButton = createButton('Pause The Game ');
-    audioButton.style('font-size','30px');
-    audioButton.style('background-color', buttonColor);
-    let buttonX=(windowWidth - width) / 2;;
-    let buttonY=(windowHeight - height) / 2;
-    audioButton.position(buttonX,buttonY);
-
-    //if the button is pressed play the audio
-    audioButton.mousePressed(pause);
 
     for( let i=0; i<notes.length; i++){
       let note=notes[i];
@@ -214,6 +197,26 @@ function draw() {
 
 function mousePressed() {
   ball.movement1= -ball.movement1
+  // use the '.enabled' boolean to make sure user enabled the mic (otherwise we'd record silence)
+  if (state ===`title` &&  mic.enabled) {
+    // Tell recorder to record to a p5.SoundFile which we will use for playback
+    recorder.record(soundFile);
+
+    fill(125)
+    text('Recording now! Click space to stop.',width/2,height/3);
+    state=`one`;
+
+}  else if (state===`one`) {
+    recorder.stop(); // stop recorder, and send the result to soundFile
+
+    background(100);
+    text('Recording stopped. Click to play & save', width/2,height/3);
+
+    state=`two`;
+}  else if (state===`two`) {
+    singleNotes.push(soundFile);
+    state=`title`
+  }
 }
 
 
@@ -223,14 +226,6 @@ function audio(){
     state='start';
     //playing background audio
     baseMelody.play();
-  };
-}
-
-function pause(){
-  //playing introduction audio(an audio straight out of the animation)
-  if(state==='start'){
-    state='title';
-    //playing background audio
-    baseMelody.stop();
+    audioButton.hide();
   };
 }

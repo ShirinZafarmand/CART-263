@@ -20,7 +20,8 @@ class Entree{
     translate(this.x, this.y);
     noStroke();
     fill(this.color);
-    //drwaing the entreesquad(this.j,0,this.j+this.space/2,0,this.j+this.space/2,2*this.space,this.j,2*this.space);
+    //drwaing the entrees
+    quad(this.j,0,this.j+this.space/2,0,this.j+this.space/2,2*this.space,this.j,2*this.space);
     pop();
 
     this.y=this.y+this.speed
