@@ -17,13 +17,13 @@ class Horizontalbars{
     fill(14, 26, 10);
     //displaying the horizontal bars
     rectMode(CENTER);
-    rect(this.j,this.j,70,25)
+    rect(this.j,this.j,70,25);
     //the movement speed for the bars
     this.y = this.y - 1;
 
     //if the bar has left the screen reapear at a random y
     if(this.y<=-40){
-      this.y=1700
+      this.y=1700;
     }
     pop();
   }
@@ -31,7 +31,8 @@ class Horizontalbars{
 
   interaction(){
     //measure the distance between the blue ball(user) and the bars
-    let d= dist(ball.x,ball.y, this.x,this.y)
+    let d= dist(ball.x,ball.y, this.x,this.y);
+
     //check if the blue ball is within the distance, the horizontal bars carry it  upwards
     if(d<=40){
       ball.movement= -1;

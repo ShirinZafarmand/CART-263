@@ -56,7 +56,7 @@ function preload() {
   let ten =loadSound(`assets/sounds/ten.wav`);
   singleNotes.push(ten);
 
-//loading the background image
+  //loading the background image
   bg = loadImage('assets/images/backgroundImage2.png');
 }
 
@@ -99,7 +99,7 @@ function setup() {
   for (let i = 0; i < count1*3; i++) {
     verticalBars[index1++] = new Verticalbars((int(i)*u),0);
     //positioning them on the screen with a random y
-    let y= random(0,height)
+    let y= random(0,height);
     entrees[index3++] = new Entree((int(i)*u),y);
   }
 
@@ -116,8 +116,8 @@ function setup() {
     let x=random(0,width);
     let y= random(0,height);
     //chong the random note from the array
-    let m= random(singleNotes);
-    let note = new Note(x,y,m);
+    let randomNote= random(singleNotes);
+    let note = new Note(x,y,randomNote);
     notes.push(note);
   }
 }
@@ -171,21 +171,21 @@ function draw() {
       horizontalBars[e].interaction();
     }
 
-      fill(114, 127, 148);
-      //drawing the blue ball(user)
-      ellipse(ball.x,ball.y,ball.size);
-      //movements of the the blue ball(user)
-      ball.y=ball.y+ball.movement;
-      ball.x=ball.x+ball.movement1;
+    fill(114, 127, 148);
+    //drawing the blue ball(user)
+    ellipse(ball.x,ball.y,ball.size);
+    //movements of the the blue ball(user)
+    ball.y=ball.y+ball.movement;
+    ball.x=ball.x+ball.movement1;
 
-//if(ball.y<-50){
-//  ball.x=random(0,width);
-//  ball.y=0;
-//  ball.y=ball.y+1;
-//}
+    //if(ball.y<-50){
+    //  ball.x=random(0,width);
+    //  ball.y=0;
+    //  ball.y=ball.y+1;
+    //}
 
     //if the ball has left the screen reapear at a random x
-     if(ball.y>=height){
+    if(ball.y>=height){
       ball.x=random(0,width);
       ball.y=0;
       ball.y=ball.y+ball.movement;
@@ -195,27 +195,33 @@ function draw() {
 
 function mousePressed() {
   //if the mouse is pressed change the direction of the movement(the blue ball)
-  ball.movement1= -ball.movement1
+  ball.movement1= -ball.movement1;
+
   //use the '.enabled' boolean to make sure user enabled the mic
   if (state ===`title` &&  mic.enabled) {
     // Tell recorder to record to a p5.SoundFile which we will use for playback
     recorder.record(soundFile);
+
     //notify the user that the recording has started!
-    fill(125)
+    fill(125);
     text('Recording now! Click to stop.',width/2,height/3);
+
     //change the state after the recording is complete
     state=`one`;
 
-}  else if (state===`one`) {
+  }  else if (state===`one`) {
     //if the mouse is pressed stop recording
     recorder.stop();
+
     //notify the user that the recording has started!
     background(10);
     text('Recording stopped. Click to use it as a note.', width/2,height/3);
+
     //change the state after the recording is stopped
     state=`two`;
-}  else if (state===`two`) {
-  //push the recording to the array of possible notes
+
+  }  else if (state===`two`) {
+    //push the recording to the array of possible notes
     singleNotes.push(soundFile);
     //go back to the instruction state
     state=`title`
