@@ -3,13 +3,13 @@ class Note{
   constructor(x,y,m){
     this.x=x,
     this.y=y,
-    this.size=50,
+    this.size=40,
     this.playingNote=m
   }
 
   draw(){
     push();
-    fill(100,30,50);
+    fill(77, 66, 24);
     ellipse(this.x,this.y, this.size)
     pop();
   }

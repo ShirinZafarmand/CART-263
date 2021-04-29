@@ -21,8 +21,8 @@ class Horizontalbars{
     //the movement speed for the bars
     this.y = this.y - 1;
 
-    if(this.y<=0){
-      this.y=2000
+    if(this.y<=-40){
+      this.y=1700
     }
     pop();
   }
@@ -44,7 +44,7 @@ class Horizontalbars{
       ball.movement= -1;
       ball.y=ball.y+ball.movement;
       ball.movement1=0;
-      
+
 
     }
   }

@@ -82,7 +82,7 @@ function setup() {
     entrees[index3++] = new Entree((int(i)*u),y);
   }
   //constructiong the horizontal bars
-  for (let j = 0; j< count2*2; j++){
+  for (let j = 0; j< count2*1.5; j++){
     let x=random(0,width);
     horizontalBars[index2++] = new Horizontalbars(x,(int(j)*u2));
   }
