@@ -19,6 +19,9 @@ let state ='title';
 let audioButton;
 let singleNotes=[];
 let bg;
+let mic;
+let recorder;
+let soundFile;
 
 let ball={
   x:600,
@@ -65,17 +68,40 @@ function setup() {
   textSize(32);
   textAlign(CENTER,CENTER);
 
+
+
+  // create an audio in
+  mic = new p5.AudioIn();
+
+  // users must manually enable their browser microphone for recording to work properly!
+  mic.start();
+
+  // create a sound recorder
+  recorder = new p5.SoundRecorder();
+
+  // connect the mic to the recorder
+  recorder.setInput(mic);
+
+  // create an empty sound file that we will use to playback the recording
+  soundFile = new p5.SoundFile();
+
+
+
+
   u = 100;
   u2 =20;
+
   //overall width and height of the screen
   let widthExtra = windowWidth;
   let heightExtra = windowHeight;
+
   //adjusting the number of vertical and horizontal bars based of the width and height os screen
   count1 = int(widthExtra/u);
   count2 = int(heightExtra/u2);
   var index1 = 0;
   var index2 = 0;
   var index3 = 0;
+
   //constructiong the vertical and the entrees
   for (let i = 0; i < count1*3; i++) {
     verticalBars[index1++] = new Verticalbars((int(i)*u),0);
@@ -102,6 +128,7 @@ function setup() {
 function draw() {
   if(state==='title'){
     background(bg);
+
     //creating a button for playing the audio
     let buttonColor = color(50);
     audioButton = createButton('Play The Game');
@@ -110,9 +137,15 @@ function draw() {
     let buttonX=(windowWidth - width) / 2;;
     let buttonY=(windowHeight - height) / 2;
     audioButton.position(buttonX,buttonY);
+
     //if the button is pressed play the audio
     audioButton.mousePressed(audio);
 
+
+
+
+    //the description text of the game
+    fill(120);
     text('description',width/2,height/2);
   }
 
@@ -121,15 +154,15 @@ function draw() {
     background(bg);
 
     let buttonColor = color(50);
-    audioButton = createButton('pause The Game ');
+    audioButton = createButton('Pause The Game ');
     audioButton.style('font-size','30px');
     audioButton.style('background-color', buttonColor);
     let buttonX=(windowWidth - width) / 2;;
     let buttonY=(windowHeight - height) / 2;
     audioButton.position(buttonX,buttonY);
-    //if the button is pressed play the audio
-    audioButton.mousePressed(restart);
 
+    //if the button is pressed play the audio
+    audioButton.mousePressed(pause);
 
     for( let i=0; i<notes.length; i++){
       let note=notes[i];
@@ -183,6 +216,7 @@ function mousePressed() {
   ball.movement1= -ball.movement1
 }
 
+
 function audio(){
   //playing introduction audio(an audio straight out of the animation)
   if(state==='title'){
@@ -192,7 +226,7 @@ function audio(){
   };
 }
 
-function restart(){
+function pause(){
   //playing introduction audio(an audio straight out of the animation)
   if(state==='start'){
     state='title';
