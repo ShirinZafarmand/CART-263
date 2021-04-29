@@ -121,7 +121,7 @@ function draw() {
     background(bg);
 
     let buttonColor = color(50);
-    audioButton = createButton('Play The Game Again');
+    audioButton = createButton('pause The Game ');
     audioButton.style('font-size','30px');
     audioButton.style('background-color', buttonColor);
     let buttonX=(windowWidth - width) / 2;;
