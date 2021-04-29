@@ -16,10 +16,8 @@ class Verticalbars{
     let widthExtra;
     translate(this.x, this.y);
     noStroke();
-    fill(15,30,0);
+    fill(14, 26, 10);
     quad(this.j,0,this.j+this.space,0,this.j+25,height,this.j,height);
-    //slowly adding a slope
-    this.space=this.space+0.01;
     this.space=constrain(this.space,25,50)
 
     pop();

@@ -17,6 +17,7 @@ let baseMelody;
 let state ='title';
 let audioButton;
 let singleNotes=[];
+let bg;
 
 let ball={
   x:600,
@@ -49,6 +50,8 @@ function preload() {
   singleNotes.push(nine);
   let ten =loadSound(`assets/sounds/ten.wav`);
   singleNotes.push(ten);
+
+  bg = loadImage('assets/images/backgroundImage2.png');
 }
 
 
@@ -96,7 +99,7 @@ function setup() {
 
 function draw() {
   if(state==='title'){
-    background(125);
+    background(bg);
     //creating a button for playing the audio
     let buttonColor = color(50);
     audioButton = createButton('Play the game');
@@ -107,12 +110,11 @@ function draw() {
     audioButton.mousePressed(audio);
 
     text('description',width/2,height/2);
-
   }
 
   else if(state==='start'){
     noStroke();
-    background(0);
+    background(bg);
 
     for( let i=0; i<notes.length; i++){
       let note=notes[i];
@@ -133,21 +135,19 @@ function draw() {
     }
 
     //if the ball is still within the screen height
-    if(ball.y<height){
       fill(200,0,0);
       //drawing the ball
       ellipse(ball.x,ball.y,ball.size);
       //moving the ball
       ball.y=ball.y+ball.movement;
       ball.x=ball.x+ball.movement1;
-    }
+
     //if the ball has left the screen reapear at a random y
-    if(ball.y>=height){
+     if(ball.y>=height){
       ball.x=random(0,width);
       ball.y=0;
       ball.y=ball.y+ball.movement;
     }
-
   }
 }
 

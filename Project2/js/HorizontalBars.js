@@ -14,7 +14,7 @@ class Horizontalbars{
     let heightExtra;
     translate(this.x, this.y);
     noStroke();
-    fill(15,30,0);
+    fill(14, 26, 10);
     //displaying the horizontal bars
     rectMode(CENTER);
     rect(this.j,this.j,100,25)
@@ -44,6 +44,7 @@ class Horizontalbars{
       ball.movement= -1;
       ball.y=ball.y+ball.movement;
       ball.movement1=0;
+      
 
     }
   }

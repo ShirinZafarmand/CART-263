@@ -6,9 +6,9 @@ class Entree{
     this.y =y;
     this.j = 0;
     //the space between the entrees
-    this.space=50;
+    this.space=51;
     //movement speed for the entrees
-    this.speed = 1;
+    this.speed = -1;
     this.forward = true;
     this.color=0;
   }
@@ -20,9 +20,10 @@ class Entree{
     noStroke();
     fill(this.color);
     //drwaing the entrees
-    quad(this.j,0,this.j+this.space,0,this.j+this.space,2*this.space,this.j,2*this.space);
+    quad(this.j,0        ,this.j+this.space/2,0,       this.j+this.space/2,2*this.space,        this.j,2*this.space);
     pop();
 
+this.y=this.y+this.speed
 
   }
 
