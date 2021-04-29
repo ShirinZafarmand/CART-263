@@ -1,8 +1,8 @@
-Cart 263
-Project2: Final Assignment
-Shirin Zafarmand
-Concordia Student ID: 40175224
-Due Date: April 29th
+Cart 263- 
+Project2: Final Assignment- 
+Shirin Zafarmand- 
+Concordia Student ID: 40175224- 
+Due Date: April 29th- 
 
 
 This project is about a game that doesn't end with a win or a lost flag, this simulation is
