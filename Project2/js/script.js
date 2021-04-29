@@ -14,6 +14,8 @@ var entrees =[];
 let notes=[];
 let numNotes=20;
 let baseMelody;
+let state ='title';
+let audioButton;
 
 let ball={
   x:600,
@@ -68,9 +70,22 @@ function setup() {
 
 
 function draw() {
+  if(state==='title'){
+    //creating a button for playing the audio
+    let buttonColor = color(50);
+    audioButton = createButton('Play the game');
+    audioButton.style('font-size','30px');
+    audioButton.style('background-color', buttonColor);
+    audioButton.position(10,70);
+    //if the button is pressed play the audio
+    audioButton.mousePressed(audio);
+
+    background(7,7,7);
+  }
+
+  else if(state==='start'){
   noStroke();
   background(0);
-  baseMelody.play();
 
   for( let i=0; i<notes.length; i++){
     let note=notes[i];
@@ -105,9 +120,21 @@ function draw() {
     ball.y=0;
     ball.y=ball.y+ball.movement;
   }
-
+}
 }
 
 function mousePressed() {
   ball.movement1= -ball.movement1
 }
+
+
+
+
+  function audio(){
+    //playing introduction audio(an audio straight out of the animation)
+      if(state==='title'){
+          state='start';
+          //playing background audio
+          baseMelody.play();
+        };
+  }
