@@ -129,7 +129,7 @@ function draw() {
 
     //creating a button for playing the main melody
     let buttonColor = color(50);
-    audioButton = createButton('Play The Game');
+    audioButton = createButton('Play The Background Melody');
     //including a style to the button
     audioButton.style('font-size','30px');
     audioButton.style('background-color', buttonColor);
@@ -141,10 +141,11 @@ function draw() {
     //the description of the Game
     fill(100);
     text('this game is the meditation break where you randomly add flute notes tothe background music',width/2,height/2);
-    text('by catching the small balls. click on the screen to change the movement of the blue ball and',width/2,height/2+40);
+    text('by catching the small balls and pressing the space key at the same time. click on the screen to change the movement of the blue ball and',width/2,height/2+40);
     text('if you get stuck between the benches, wait till you reach the postern holes and the play with the arrow keys. ',width/2,height/2+80);
     text('there is no winning or losing, just you having fun making a random melody',width/2,height/2+120);
-    text('when ready, click the button on the left corner!',width/2,height/2+160);
+    text('you can also record your own voice to use is as a note in the game, to do that click!',width/2,height/2+160);
+    text('when ready, press the enter key. To hear the melody press the buton at the left corner!',width/2,height/2+200);
   }
 
   else if(state==='start'){
@@ -217,7 +218,7 @@ function mousePressed() {
     //push the recording to the array of possible notes
     singleNotes.push(soundFile);
     //go back to the instruction state
-    state=`title`
+    state=`title`;
   }
 }
 
@@ -248,6 +249,6 @@ function keyPressed(){
 
 
 function audio(){
+    baseMelody.setVolume(0.4);
     baseMelody.play();
-    audioButton.hide();
 }
