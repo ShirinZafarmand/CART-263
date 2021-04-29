@@ -37,6 +37,9 @@ function setup() {
   var y = (windowHeight - height) / 2;
   cnv.position(x, y);
 
+  textSize(32);
+  textAlign(CENTER,CENTER);
+
   u = 100;
   u2 =20;
   //overall width and height of the screen
@@ -71,70 +74,69 @@ function setup() {
 
 function draw() {
   if(state==='title'){
+    background(125);
     //creating a button for playing the audio
     let buttonColor = color(50);
     audioButton = createButton('Play the game');
     audioButton.style('font-size','30px');
     audioButton.style('background-color', buttonColor);
-    audioButton.position(10,70);
+    audioButton.position(width/1.5,height/3);
     //if the button is pressed play the audio
     audioButton.mousePressed(audio);
 
-    background(7,7,7);
+    text('description',width/2,height/2);
+
   }
 
   else if(state==='start'){
-  noStroke();
-  background(0);
+    noStroke();
+    background(0);
 
-  for( let i=0; i<notes.length; i++){
-    let note=notes[i];
-    note.draw();
-    note.play();
-  };
+    for( let i=0; i<notes.length; i++){
+      let note=notes[i];
+      note.draw();
+      note.play();
+    };
 
-  //drawing the vertical bars and entrees
-  for (var i = 0; i <= count1; i++) {
-    verticalBars[i].draw();
-    entrees[i].draw();
-    entrees[i].keyPressed();
-  }
-  //drawing the horizontal bars
-  for (var j = 0; j <= count2; j++) {
-    horizontalBars[j].draw();
-    horizontalBars[j].interaction();
-  }
+    //drawing the vertical bars and entrees
+    for (var i = 0; i <= count1; i++) {
+      verticalBars[i].draw();
+      entrees[i].draw();
+      entrees[i].keyPressed();
+    }
+    //drawing the horizontal bars
+    for (var j = 0; j <= count2; j++) {
+      horizontalBars[j].draw();
+      horizontalBars[j].interaction();
+    }
 
-  //if the ball is still within the screen height
-  if(ball.y<height){
-    fill(200,0,0);
-    //drawing the ball
-    ellipse(ball.x,ball.y,ball.size);
-    //moving the ball
-    ball.y=ball.y+ball.movement;
-    ball.x=ball.x+ball.movement1;
+    //if the ball is still within the screen height
+    if(ball.y<height){
+      fill(200,0,0);
+      //drawing the ball
+      ellipse(ball.x,ball.y,ball.size);
+      //moving the ball
+      ball.y=ball.y+ball.movement;
+      ball.x=ball.x+ball.movement1;
+    }
+    //if the ball has left the screen reapear at a random y
+    if(ball.y>=height){
+      ball.x=random(0,width);
+      ball.y=0;
+      ball.y=ball.y+ball.movement;
+    }
   }
-  //if the ball has left the screen reapear at a random y
-  if(ball.y>=height){
-    ball.x=random(0,width);
-    ball.y=0;
-    ball.y=ball.y+ball.movement;
-  }
-}
 }
 
 function mousePressed() {
   ball.movement1= -ball.movement1
 }
 
-
-
-
-  function audio(){
-    //playing introduction audio(an audio straight out of the animation)
-      if(state==='title'){
-          state='start';
-          //playing background audio
-          baseMelody.play();
-        };
-  }
+function audio(){
+  //playing introduction audio(an audio straight out of the animation)
+  if(state==='title'){
+    state='start';
+    //playing background audio
+    baseMelody.play();
+  };
+}
