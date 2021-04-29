@@ -77,7 +77,7 @@ function setup() {
   //connect the mic to the recorder
   recorder.setInput(mic);
   //create an empty sound file that we will use to playback the recording
-  //soundFile = new p5.SoundFile();
+  soundFile = new p5.SoundFile();
 
   textSize(32);
   textAlign(CENTER,CENTER);
