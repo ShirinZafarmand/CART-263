@@ -1,7 +1,7 @@
 "use strict";
 
 /**************************************************
-Project2- Prototype
+Project2
 shirin zafarmand
 **************************************************/
 var u;
@@ -11,6 +11,7 @@ var count2;
 var verticalBars = [];
 var horizontalBars =[];
 var entrees =[];
+var entrees2 =[];
 let notes=[];
 let numNotes=20;
 let baseMelody;
@@ -76,11 +77,12 @@ function setup() {
   var index2 = 0;
   var index3 = 0;
   //constructiong the vertical and the entrees
-  for (let i = 0; i < count1*2; i++) {
+  for (let i = 0; i < count1*3; i++) {
     verticalBars[index1++] = new Verticalbars((int(i)*u),0);
     let y= random(0,height)
     entrees[index3++] = new Entree((int(i)*u),y);
   }
+
   //constructiong the horizontal bars
   for (let j = 0; j< count2*1.5; j++){
     let x=random(0,width);
@@ -102,10 +104,12 @@ function draw() {
     background(bg);
     //creating a button for playing the audio
     let buttonColor = color(50);
-    audioButton = createButton('Play the game');
+    audioButton = createButton('Play The Game');
     audioButton.style('font-size','30px');
     audioButton.style('background-color', buttonColor);
-    audioButton.position(width/1.5,height/3);
+    let buttonX=(windowWidth - width) / 2;;
+    let buttonY=(windowHeight - height) / 2;
+    audioButton.position(buttonX,buttonY);
     //if the button is pressed play the audio
     audioButton.mousePressed(audio);
 
@@ -115,6 +119,17 @@ function draw() {
   else if(state==='start'){
     noStroke();
     background(bg);
+
+    let buttonColor = color(50);
+    audioButton = createButton('Play The Game Again');
+    audioButton.style('font-size','30px');
+    audioButton.style('background-color', buttonColor);
+    let buttonX=(windowWidth - width) / 2;;
+    let buttonY=(windowHeight - height) / 2;
+    audioButton.position(buttonX,buttonY);
+    //if the button is pressed play the audio
+    audioButton.mousePressed(restart);
+
 
     for( let i=0; i<notes.length; i++){
       let note=notes[i];
@@ -128,19 +143,32 @@ function draw() {
       entrees[i].draw();
       entrees[i].keyPressed();
     }
+
+    for (var i = 0; i <= count1; i++) {
+      verticalBars[i].draw();
+      entrees[i].draw();
+      entrees[i].keyPressed();
+    }
+
     //drawing the horizontal bars
-    for (var j = 0; j <= count2; j++) {
-      horizontalBars[j].draw();
-      horizontalBars[j].interaction();
+    for (var e = 0; e <= count2; e++) {
+      horizontalBars[e].draw();
+      horizontalBars[e].interaction();
     }
 
     //if the ball is still within the screen height
-      fill(200,0,0);
+      fill(114, 127, 148);
       //drawing the ball
       ellipse(ball.x,ball.y,ball.size);
       //moving the ball
       ball.y=ball.y+ball.movement;
       ball.x=ball.x+ball.movement1;
+
+//if(ball.y<-50){
+//  ball.x=random(0,width);
+//  ball.y=0;
+//  ball.y=ball.y+1;
+//}
 
     //if the ball has left the screen reapear at a random y
      if(ball.y>=height){
@@ -161,6 +189,14 @@ function audio(){
     state='start';
     //playing background audio
     baseMelody.play();
-    audioButton.hide();
+  };
+}
+
+function restart(){
+  //playing introduction audio(an audio straight out of the animation)
+  if(state==='start'){
+    state='title';
+    //playing background audio
+    baseMelody.stop();
   };
 }
