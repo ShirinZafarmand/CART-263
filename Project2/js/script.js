@@ -1,7 +1,7 @@
 "use strict";
 
 /**************************************************
-Project2- Meditation Session with Fun
+Project2- Meditation break
 shirin zafarmand
 **************************************************/
 var u;
