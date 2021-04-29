@@ -11,6 +11,7 @@ they produce, and their use in flutes and other instruments. Therefore, the focu
 
 This Project is a randomly composed music game. The visuals resemble a bamboo
 Forest. There is a base melody playing in the background and the user adds some random single notes (single notes played by the flute) to the melody.
+The users can also record their own voices to be used as random notes. This can be done in the beginning of the game where the game records their voices. They can add random lyrics or humming sounds as many as they want to.
 
 But to make their own random melody they have to play the game. There is a ball that is falling from the top, and is moving downward and to the sides. The user controls the movements of the ball by clicking the mouse. With each click, the direction of the downfall changes from right to left.
 
