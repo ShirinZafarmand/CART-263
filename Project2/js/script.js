@@ -155,8 +155,7 @@ function draw() {
     for( let i=0; i<notes.length; i++){
       let note=notes[i];
       note.draw();
-      note.play();
-    };
+    }
 
     //displaying the vertical bars and entrees
     for (var i = 0; i <= count1; i++) {
@@ -177,12 +176,6 @@ function draw() {
     //movements of the the blue ball(user)
     ball.y=ball.y+ball.movement;
     ball.x=ball.x+ball.movement1;
-
-    //if(ball.y<-50){
-    //  ball.x=random(0,width);
-    //  ball.y=0;
-    //  ball.y=ball.y+1;
-    //}
 
     //if the ball has left the screen reapear at a random x
     if(ball.y>=height){
@@ -225,6 +218,16 @@ function mousePressed() {
     singleNotes.push(soundFile);
     //go back to the instruction state
     state=`title`
+  }
+}
+
+function keyPressed(){
+  //if the space key is pressed play the notes
+  if (keyCode===32){
+    for( let i=0; i<notes.length; i++){
+      let note=notes[i];
+      note.play();
+    }
   }
 }
 
